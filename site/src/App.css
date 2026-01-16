@@ -427,6 +427,13 @@ body[data-theme='dark'] .card__tags span {
   border: 1px solid rgba(155, 180, 160, 0.4);
   font-weight: 600;
   color: #2d4838;
+  transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme='dark'] .skill {
+  background: rgba(20, 30, 24, 0.75);
+  border-color: rgba(120, 140, 130, 0.3);
+  color: #e2eae5;
 }
 
 .skill__icon {
@@ -437,6 +444,12 @@ body[data-theme='dark'] .card__tags span {
   display: grid;
   place-items: center;
   color: #2a4637;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme='dark'] .skill__icon {
+  background: rgba(120, 140, 130, 0.2);
+  color: #d7e2db;
 }
 
 .timeline {
@@ -449,6 +462,12 @@ body[data-theme='dark'] .card__tags span {
   border-radius: 18px;
   border: 1px solid rgba(155, 180, 160, 0.4);
   background: rgba(255, 255, 255, 0.8);
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+body[data-theme='dark'] .timeline__item {
+  background: rgba(18, 26, 22, 0.85);
+  border-color: rgba(120, 140, 130, 0.3);
 }
 
 .timeline__meta {
@@ -467,6 +486,13 @@ body[data-theme='dark'] .card__tags span {
   gap: 8px;
   font-weight: 600;
   color: #2a4637;
+  transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme='dark'] .contact {
+  background: rgba(18, 26, 22, 0.85);
+  border-color: rgba(120, 140, 130, 0.3);
+  color: #e0e9e2;
 }
 
 .contact span:last-child {
@@ -490,6 +516,10 @@ body[data-theme='dark'] .card__tags span {
     transition: all 0.3s ease;
   }
 
+  body[data-theme='dark'] .nav__links {
+    background: rgba(19, 27, 22, 0.95);
+  }
+
   .nav__links.is-open {
     transform: translateY(0);
     opacity: 1;
@@ -505,6 +535,15 @@ body[data-theme='dark'] .card__tags span {
   .nav {
     top: 8px;
     padding: 10px 16px;
+  }
+
+  .nav__actions {
+    gap: 6px;
+  }
+
+  .theme-toggle {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
 
   .hero__actions {
