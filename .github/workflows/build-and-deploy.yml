@@ -36,8 +36,8 @@ jobs:
             - name: Build and push image
               uses: docker/build-push-action@v6
               with:
-                  context: .
-                  file: docker/Dockerfile
+                  context: ./site
+                  file: ./docker/Dockerfile
                   target: serve
                   push: true
                   tags: |
