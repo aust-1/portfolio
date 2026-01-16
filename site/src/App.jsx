@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 const skills = [
@@ -118,7 +118,20 @@ const navLinks = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isDark, setIsDark] = useState(false)
   const shuffledSkills = useMemo(() => [...skills].sort(() => 0.5 - Math.random()), [])
+
+  useEffect(() => {
+    const storedTheme = window.localStorage.getItem('theme')
+    if (storedTheme === 'dark') {
+      setIsDark(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    document.body.dataset.theme = isDark ? 'dark' : 'light'
+    window.localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }, [isDark])
 
   return (
     <div className="app">
@@ -131,16 +144,26 @@ function App() {
             </a>
           ))}
         </nav>
-        <button
-          className={`nav__burger ${menuOpen ? 'is-open' : ''}`}
-          type="button"
-          aria-label="Ouvrir le menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        <div className="nav__actions">
+          <button
+            className="theme-toggle"
+            type="button"
+            onClick={() => setIsDark((current) => !current)}
+            aria-pressed={isDark}
+          >
+            {isDark ? 'Mode clair' : 'Mode sombre'}
+          </button>
+          <button
+            className={`nav__burger ${menuOpen ? 'is-open' : ''}`}
+            type="button"
+            aria-label="Ouvrir le menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </header>
 
       <main>
