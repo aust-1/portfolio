@@ -2,90 +2,159 @@ import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
 const skills = [
-  'Git',
-  'Bash',
-  'Linux',
   'Python',
-  'Docker',
-  'PostgreSQL',
-  'NoSQL',
   'TypeScript',
+  'C/C++',
+  'C#',
+  '.NET',
+  'PostgreSQL',
+  'MySQL',
+  'SQL',
+  'Supabase',
+  'Git/GitHub',
+  'Docusaurus',
+  'Discord API',
 ]
 
-const projects = Array.from({ length: 8 }).map((_, index) => ({
-  title: `Projet ${index + 1}`,
-  description:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet risus a leo auctor dictum.',
-  tags: ['API', 'UI', 'Ops'],
-  link: '#',
-}))
+const projects = [
+  {
+    title: 'Site de documentation technique',
+    description:
+      'Conception de l’architecture documentaire et rédaction de contenus techniques pour centraliser la documentation des membres.',
+    tags: ['Docusaurus', 'Markdown', 'Git'],
+    link: 'https://docs.devinci-fablab.fr',
+  },
+  {
+    title: 'Site de documentation DaVinciBot',
+    description:
+      'Structuration de la documentation technique et mise en place d’un référentiel partagé pour l’association.',
+    tags: ['Docusaurus', 'Markdown', 'Git'],
+    link: 'https://docs.davincibot.fr',
+  },
+  {
+    title: 'Bot Discord FabLab',
+    description:
+      'Développement backend, logique métier et intégration à l’écosystème Discord pour automatiser la gestion interne.',
+    tags: ['Python', 'Discord API', 'Git'],
+    link: 'https://github.com/DeVinci-FabLab/FabLaBot',
+  },
+  {
+    title: 'Plateforme d’inscriptions à des formations',
+    description:
+      'Développement full-stack et conception de la base de données pour gérer inscriptions, places et données utilisateurs.',
+    tags: ['TypeScript', 'Svelte', 'Supabase'],
+    link: 'https://davincibot.fr',
+  },
+  {
+    title: 'Générateur de documents financiers',
+    description:
+      'Génération dynamique de documents officiels et standardisation des formats pour factures et notes de frais.',
+    tags: ['LaTeX', 'Automation', 'Docs'],
+    link: 'https://fac.eliott-roussille.fr',
+  },
+  {
+    title: 'Boggle',
+    description:
+      'Conception orientée objet et implémentation des algorithmes de recherche pour un jeu sous contraintes POO.',
+    tags: ['C#', '.NET', 'Git'],
+    link: '#',
+  },
+  {
+    title: 'LivinParis',
+    description:
+      'Modélisation par graphes, plus courts chemins et backend applicatif pour une application de livraison.',
+    tags: ['C#', 'Graphes', 'MySQL'],
+    link: '#',
+  },
+  {
+    title: 'Coupe de France de Robotique',
+    description:
+      'Développement du logiciel de contrôle d’un robot autonome avec asservissement et programmation concurrente.',
+    tags: ['C/C++', 'Python', 'Embarqué'],
+    link: '#',
+  },
+]
 
 const experiences = [
   {
-    role: 'Ingénieur Logiciel',
-    company: 'Entreprise Créative',
-    period: '2024 — Aujourd’hui',
+    role: 'Directeur Technique Informatique',
+    company: 'DeVinci Fablab',
+    period: 'Depuis septembre 2025',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor turpis non elit consequat, sed laoreet massa aliquet.',
+      'Supervision technique des projets et accompagnement des équipes étudiantes, structuration des pratiques de développement et amélioration de la qualité logicielle.',
   },
   {
-    role: 'Développeur Full Stack',
-    company: 'Studio Digital',
-    period: '2022 — 2024',
+    role: 'Membre du pôle numérique',
+    company: 'DaVinciBot',
+    period: 'Depuis novembre 2025',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum malesuada neque sit amet libero aliquet, a semper libero dignissim.',
+      'Développement full-stack, contribution aux outils logiciels de l’association et conception d’un site d’inscriptions aux formations.',
   },
   {
-    role: 'Développeur Backend',
-    company: 'Startup Tech',
-    period: '2020 — 2022',
+    role: 'Membre du pôle numérique',
+    company: 'DeVinci Fablab',
+    period: 'Depuis juin 2025',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Pellentesque ac mi sit amet nunc posuere.',
+      'Structuration de l’écosystème associatif, conception d’architectures logicielles et maintenance des outils numériques internes.',
   },
   {
-    role: 'Développeur Junior',
-    company: 'Agence Web',
-    period: '2018 — 2020',
+    role: 'Responsable Formation',
+    company: 'DeVinci Fablab',
+    period: 'Avril 2025 — Décembre 2025',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Integer at libero sit amet magna congue.',
+      'Organisation et structuration de l’offre de formation technique, création de parcours cohérents et supports pédagogiques réutilisables.',
   },
   {
-    role: 'Stagiaire Développement',
-    company: 'Lab Innovation',
-    period: '2017 — 2018',
+    role: 'Référent Informatique — Coupe de France de Robotique',
+    company: 'DaVinciBot',
+    period: 'Depuis octobre 2024',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod est sed neque feugiat, quis malesuada lectus aliquet.',
+      'Pilotage de la partie informatique, répartition des tâches, formation des membres et livraison de logiciels robotiques fonctionnels.',
+  },
+  {
+    role: 'Responsable de module — Développement Technologique et Innovation',
+    company: 'EMLV',
+    period: 'Depuis septembre 2024',
+    description:
+      'Conception et encadrement d’un module orienté projet et innovation, accompagnement à la montée en compétences techniques.',
+  },
+  {
+    role: 'Trésorier',
+    company: 'DeVinci Lumière',
+    period: 'Avril 2024 — Mai 2025',
+    description:
+      'Gestion financière et suivi administratif, documents normalisés et automatisation partielle des processus.',
   },
 ]
 
 const trainings = [
   {
-    title: 'Master Informatique',
-    school: 'Université Exemple',
-    period: '2016 — 2018',
+    title: 'Semestre à l’international — programme d’échange',
+    school: 'UVIC — Universitat de Vic, Espagne',
+    period: 'Juillet 2025 — Janvier 2026',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget turpis sed arcu tempor volutpat.',
+      'Cours suivis : Database, Python, “Optimization & Operational Research” (100% en anglais).',
   },
   {
-    title: 'Licence Informatique',
-    school: 'Université Exemple',
-    period: '2013 — 2016',
+    title: '3ème année d’études d’ingénieur — majeure Big Data et IA',
+    school: 'ESILV — École Supérieure d’Ingénieurs Léonard de Vinci',
+    period: 'Depuis septembre 2023',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum ipsum at augue accumsan.',
+      'Associations : DeVinci Fablab, DaVinciBot, LéoLearning, DeVinci Lumière, Cordées de la Réussite.',
   },
   {
-    title: 'DUT Informatique',
-    school: 'IUT Créatif',
-    period: '2011 — 2013',
+    title: 'Double diplôme ingénieur manager',
+    school: 'EMLV / ESILV',
+    period: 'Depuis septembre 2023',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae velit vitae sem volutpat posuere.',
+      'Cours additionnels : droit, gestion, corporate strategy, finance, marketing, comptabilité, intercultural management, vente.',
   },
   {
-    title: 'Certification Cloud',
-    school: 'Open Academy',
-    period: '2019',
+    title: 'Baccalauréat général — spécialités Maths & Physique-Chimie',
+    school: 'Groupe scolaire Sœur Rosalie — Louise de Marillac (Paris 5e)',
+    period: 'Septembre 2020 — Juillet 2023',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sollicitudin massa nec ipsum faucibus.',
+      'Mention Très bien. Options : Mathématiques expertes et Coréen.',
   },
 ]
 
@@ -96,9 +165,9 @@ const contacts = [
     href: 'mailto:eliottroussille@gmail.com',
   },
   {
-    label: 'GitHub',
-    value: 'github.com/aust-1',
-    href: 'https://github.com/aust-1/',
+    label: 'Site',
+    value: 'eliott-roussille.fr',
+    href: 'https://eliott-roussille.fr',
   },
   {
     label: 'LinkedIn',
@@ -169,19 +238,26 @@ function App() {
       <main>
         <section className="hero" id="about">
           <div className="hero__content">
-            <p className="eyebrow">Développeur créatif & orienté impact</p>
+            <p className="eyebrow">Ingénieur en formation · Big Data & IA</p>
             <h1>
-              Eliott Roussille — portfolio créatif pour explorer mes projets,
-              compétences et parcours.
+              Eliott Roussille — projets, responsabilités associatives et parcours
+              d’ingénieur.
             </h1>
             <p className="lead">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus
-              orci ut pretium feugiat. Donec consectetur justo vitae libero
-              imperdiet, eu facilisis lorem dignissim.
+              Étudiant en 3ème année d’école d’ingénieur, je développe des outils
+              numériques pour les associations du PULV, avec un focus sur les
+              architectures solides, la documentation et le produit.
             </p>
             <div className="hero__actions">
               <a className="btn btn--primary" href="#projects">
                 Voir les projets
+              </a>
+              <a
+                className="btn btn--ghost"
+                href="/CV%20Eliott%20Roussille%20-%20FR%20Ver.%20-%202026.pdf"
+                download
+              >
+                Télécharger le CV
               </a>
               <a className="btn btn--ghost" href="#contact">
                 Me contacter
@@ -205,13 +281,10 @@ function App() {
         </section>
 
         <section className="section" id="projects">
-          <div className="section__header">
-            <h2>Projets sélectionnés</h2>
-            <p>
-              Une collection de projets récents. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit.
-            </p>
-          </div>
+            <div className="section__header">
+              <h2>Projets sélectionnés</h2>
+              <p>Projets associatifs, logiciels et plateformes que je maintiens.</p>
+            </div>
           <div className="grid grid--projects">
             {projects.map((project) => (
               <article className="card" key={project.title}>
@@ -236,10 +309,10 @@ function App() {
         </section>
 
         <section className="section" id="skills">
-          <div className="section__header">
-            <h2>Compétences</h2>
-            <p>Un aperçu des outils et technologies que j’utilise.</p>
-          </div>
+            <div className="section__header">
+              <h2>Compétences</h2>
+              <p>Outils et technologies utilisés dans mes projets.</p>
+            </div>
           <div className="grid grid--skills">
             {skills.map((skill) => (
               <div className="skill" key={skill}>
@@ -251,10 +324,10 @@ function App() {
         </section>
 
         <section className="section" id="experience">
-          <div className="section__header">
-            <h2>Expérience</h2>
-            <p>5 expériences professionnelles récentes.</p>
-          </div>
+            <div className="section__header">
+              <h2>Expérience</h2>
+              <p>Responsabilités associatives, pédagogie et projets techniques.</p>
+            </div>
           <div className="timeline">
             {experiences.map((exp) => (
               <article className="timeline__item" key={exp.role}>
@@ -271,10 +344,10 @@ function App() {
         </section>
 
         <section className="section" id="training">
-          <div className="section__header">
-            <h2>Formations</h2>
-            <p>4 formations et certifications principales.</p>
-          </div>
+            <div className="section__header">
+              <h2>Formations</h2>
+              <p>Parcours d’ingénieur, double diplôme et semestre à l’international.</p>
+            </div>
           <div className="grid grid--training">
             {trainings.map((training) => (
               <article className="card" key={training.title}>
@@ -289,10 +362,10 @@ function App() {
         </section>
 
         <section className="section" id="contact">
-          <div className="section__header">
-            <h2>Contact</h2>
-            <p>On échange ? Voici mes liens directs.</p>
-          </div>
+            <div className="section__header">
+              <h2>Contact</h2>
+              <p>On échange ? Voici mes liens directs.</p>
+            </div>
           <div className="grid grid--contact">
             {contacts.map((contact) => (
               <a className="contact" href={contact.href} key={contact.label}>
