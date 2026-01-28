@@ -1,7 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import './App.css'
 
+const keySkills = [
+  'Architecture logicielle',
+  'Full-stack',
+  'Data & IA',
+  'Automatisation',
+  'DevOps',
+]
+
 const skills = [
+  'Git/GitHub',
   'Python',
   'TypeScript',
   'C#',
@@ -17,35 +26,19 @@ const skills = [
   'Markdown',
   'Regex',
   'React',
+  'Vite',
   'Next.js',
   'Svelte',
   'Tailwind CSS',
-  'Vite',
   'Node.js',
   'GraphQL',
   'Docker',
-  'Kubernetes',
-  'Nginx',
   'PostgreSQL',
   'MySQL',
-  'SQL',
   'MongoDB',
   'SQLite',
-  'Firebase',
   'Supabase',
-  'Git/GitHub',
-  'VS Code',
-  'IntelliJ',
-  'PyCharm',
-  'Rider',
   'Linux',
-  'Arch Linux',
-  'Debian',
-  'Notion',
-  'Discord',
-  'Raspberry Pi',
-  'Docusaurus',
-  'Discord API',
 ]
 
 const projects = [
@@ -220,7 +213,7 @@ const navLinks = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isDark, setIsDark] = useState(false)
-  const shuffledSkills = useMemo(() => [...skills].sort(() => 0.5 - Math.random()), [])
+  const shuffledSkills = useMemo(() => [...keySkills].sort(() => 0.5 - Math.random()), [])
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem('theme')
@@ -272,8 +265,7 @@ function App() {
           <div className="hero__content">
             <p className="eyebrow">Ingénieur en formation · Big Data & IA</p>
             <h1>
-              Eliott Roussille — projets, responsabilités associatives et parcours
-              d'ingénieur.
+              Eliott Roussille
             </h1>
             <p className="lead">
               Étudiant en 3ème année d'école d'ingénieur, je développe des outils
