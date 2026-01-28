@@ -4,14 +4,46 @@ import './App.css'
 const skills = [
   'Python',
   'TypeScript',
-  'C/C++',
   'C#',
+  'C',
+  'C++',
   '.NET',
+  'Rust',
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'Bash',
+  'LaTeX',
+  'Markdown',
+  'Regex',
+  'React',
+  'Next.js',
+  'Svelte',
+  'Tailwind CSS',
+  'Vite',
+  'Node.js',
+  'GraphQL',
+  'Docker',
+  'Kubernetes',
+  'Nginx',
   'PostgreSQL',
   'MySQL',
   'SQL',
+  'MongoDB',
+  'SQLite',
+  'Firebase',
   'Supabase',
   'Git/GitHub',
+  'VS Code',
+  'IntelliJ',
+  'PyCharm',
+  'Rider',
+  'Linux',
+  'Arch Linux',
+  'Debian',
+  'Notion',
+  'Discord',
+  'Raspberry Pi',
   'Docusaurus',
   'Discord API',
 ]
@@ -20,26 +52,26 @@ const projects = [
   {
     title: 'Site de documentation technique',
     description:
-      'Conception de l’architecture documentaire et rédaction de contenus techniques pour centraliser la documentation des membres.',
+      'Conception de l\'architecture documentaire et rédaction de contenus techniques pour centraliser la documentation des membres.',
     tags: ['Docusaurus', 'Markdown', 'Git'],
     link: 'https://docs.devinci-fablab.fr',
   },
   {
     title: 'Site de documentation DaVinciBot',
     description:
-      'Structuration de la documentation technique et mise en place d’un référentiel partagé pour l’association.',
+      'Structuration de la documentation technique et mise en place d\'un référentiel partagé pour l\'association.',
     tags: ['Docusaurus', 'Markdown', 'Git'],
     link: 'https://docs.davincibot.fr',
   },
   {
     title: 'Bot Discord FabLab',
     description:
-      'Développement backend, logique métier et intégration à l’écosystème Discord pour automatiser la gestion interne.',
+      'Développement backend, logique métier et intégration à l\'écosystème Discord pour automatiser la gestion interne.',
     tags: ['Python', 'Discord API', 'Git'],
     link: 'https://github.com/DeVinci-FabLab/FabLaBot',
   },
   {
-    title: 'Plateforme d’inscriptions à des formations',
+    title: 'Plateforme d\'inscriptions à des formations',
     description:
       'Développement full-stack et conception de la base de données pour gérer inscriptions, places et données utilisateurs.',
     tags: ['TypeScript', 'Svelte', 'Supabase'],
@@ -69,7 +101,7 @@ const projects = [
   {
     title: 'Coupe de France de Robotique',
     description:
-      'Développement du logiciel de contrôle d’un robot autonome avec asservissement et programmation concurrente.',
+      'Développement du logiciel de contrôle d\'un robot autonome avec asservissement et programmation concurrente.',
     tags: ['C/C++', 'Python', 'Embarqué'],
     link: '#',
   },
@@ -88,21 +120,21 @@ const experiences = [
     company: 'DaVinciBot',
     period: 'Depuis novembre 2025',
     description:
-      'Développement full-stack, contribution aux outils logiciels de l’association et conception d’un site d’inscriptions aux formations.',
+      'Développement full-stack, contribution aux outils logiciels de l\'association et conception d\'un site d\'inscriptions aux formations.',
   },
   {
     role: 'Membre du pôle numérique',
     company: 'DeVinci Fablab',
     period: 'Depuis juin 2025',
     description:
-      'Structuration de l’écosystème associatif, conception d’architectures logicielles et maintenance des outils numériques internes.',
+      'Structuration de l\'écosystème associatif, conception d\'architectures logicielles et maintenance des outils numériques internes.',
   },
   {
     role: 'Responsable Formation',
     company: 'DeVinci Fablab',
     period: 'Avril 2025 — Décembre 2025',
     description:
-      'Organisation et structuration de l’offre de formation technique, création de parcours cohérents et supports pédagogiques réutilisables.',
+      'Organisation et structuration de l\'offre de formation technique, création de parcours cohérents et supports pédagogiques réutilisables.',
   },
   {
     role: 'Référent Informatique — Coupe de France de Robotique',
@@ -116,7 +148,7 @@ const experiences = [
     company: 'EMLV',
     period: 'Depuis septembre 2024',
     description:
-      'Conception et encadrement d’un module orienté projet et innovation, accompagnement à la montée en compétences techniques.',
+      'Conception et encadrement d\'un module orienté projet et innovation, accompagnement à la montée en compétences techniques.',
   },
   {
     role: 'Trésorier',
@@ -129,15 +161,15 @@ const experiences = [
 
 const trainings = [
   {
-    title: 'Semestre à l’international — programme d’échange',
+    title: 'Semestre à l\'international — programme d\'échange',
     school: 'UVIC — Universitat de Vic, Espagne',
     period: 'Juillet 2025 — Janvier 2026',
     description:
       'Cours suivis : Database, Python, “Optimization & Operational Research” (100% en anglais).',
   },
   {
-    title: '3ème année d’études d’ingénieur — majeure Big Data et IA',
-    school: 'ESILV — École Supérieure d’Ingénieurs Léonard de Vinci',
+    title: '3ème année d\'études d\'ingénieur — majeure Big Data et IA',
+    school: 'ESILV — École Supérieure d\'Ingénieurs Léonard de Vinci',
     period: 'Depuis septembre 2023',
     description:
       'Associations : DeVinci Fablab, DaVinciBot, LéoLearning, DeVinci Lumière, Cordées de la Réussite.',
@@ -165,14 +197,14 @@ const contacts = [
     href: 'mailto:eliottroussille@gmail.com',
   },
   {
-    label: 'Site',
-    value: 'eliott-roussille.fr',
-    href: 'https://eliott-roussille.fr',
-  },
-  {
     label: 'LinkedIn',
     value: 'linkedin.com/in/eliott-roussille',
     href: 'https://linkedin.com/in/eliott-roussille/',
+  },
+  {
+    label: 'Github',
+    value: 'aust-1',
+    href: 'https://github.com/aust-1',
   },
 ]
 
@@ -241,10 +273,10 @@ function App() {
             <p className="eyebrow">Ingénieur en formation · Big Data & IA</p>
             <h1>
               Eliott Roussille — projets, responsabilités associatives et parcours
-              d’ingénieur.
+              d'ingénieur.
             </h1>
             <p className="lead">
-              Étudiant en 3ème année d’école d’ingénieur, je développe des outils
+              Étudiant en 3ème année d'école d'ingénieur, je développe des outils
               numériques pour les associations du PULV, avec un focus sur les
               architectures solides, la documentation et le produit.
             </p>
@@ -346,7 +378,7 @@ function App() {
         <section className="section" id="training">
             <div className="section__header">
               <h2>Formations</h2>
-              <p>Parcours d’ingénieur, double diplôme et semestre à l’international.</p>
+              <p>Parcours d'ingénieur, double diplôme et semestre à l'international.</p>
             </div>
           <div className="grid grid--training">
             {trainings.map((training) => (
