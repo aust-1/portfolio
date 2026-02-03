@@ -200,6 +200,114 @@ body[data-theme="dark"] .nav__burger span {
   gap: 12px;
 }
 
+.lang-switcher {
+  position: relative;
+}
+
+.lang-switcher__button {
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-button-bg);
+  height: 40px;
+  padding: 0 14px;
+  font-weight: 600;
+  color: var(--color-accent-strong);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border 0.3s ease;
+}
+
+.lang-switcher__label {
+  font-size: 0.85rem;
+}
+
+.lang-switcher__chevron {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+}
+
+.lang-switcher__chevron svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lang-switcher__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 170px;
+  background: var(--color-surface-strong);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  padding: 8px;
+  display: grid;
+  gap: 6px;
+  box-shadow: 0 16px 30px var(--color-shadow);
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  z-index: 2;
+}
+
+.lang-switcher__menu.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.lang-switcher__option {
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 12px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    border 0.3s ease,
+    color 0.3s ease;
+}
+
+.lang-switcher__option:hover,
+.lang-switcher__option:focus-visible {
+  background: var(--color-button-bg);
+  border-color: var(--color-border-strong);
+}
+
+.lang-switcher__option.is-selected {
+  background: var(--color-tag-bg);
+  border-color: var(--color-border-strong);
+  color: var(--color-accent-strong);
+}
+
+.lang-switcher__code {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
 .theme-toggle {
   border-radius: 999px;
   border: 1px solid var(--color-border);
@@ -243,6 +351,21 @@ body[data-theme="dark"] .nav__burger span {
 body[data-theme="dark"] .theme-toggle {
   background: var(--color-button-bg);
   border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+body[data-theme="dark"] .lang-switcher__button {
+  background: var(--color-button-bg);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+body[data-theme="dark"] .lang-switcher__menu {
+  background: var(--color-surface-strong);
+  border-color: var(--color-border);
+}
+
+body[data-theme="dark"] .lang-switcher__option.is-selected {
   color: var(--color-text);
 }
 
@@ -704,6 +827,11 @@ body[data-theme="dark"] .contact {
   .theme-toggle {
     width: 36px;
     height: 36px;
+  }
+
+  .lang-switcher__button {
+    height: 36px;
+    padding: 0 12px;
   }
 
   .hero__actions {
