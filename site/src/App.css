@@ -455,6 +455,21 @@ body[data-theme="dark"] .chip {
     border 0.3s ease;
 }
 
+.card--link {
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    border 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card--link:hover,
+.card--link:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 36px var(--color-shadow);
+}
+
 body[data-theme="dark"] .card {
   background: var(--color-surface);
   border-color: var(--color-border);
@@ -521,6 +536,18 @@ body[data-theme="dark"] .card__tags span {
   margin-top: auto;
   font-weight: 600;
   color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeline__cta {
+  margin-top: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 .skill {
@@ -577,6 +604,22 @@ body[data-theme="dark"] .skill__icon {
   transition:
     background 0.3s ease,
     border 0.3s ease;
+}
+
+.timeline__item--link {
+  display: block;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    border 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.timeline__item--link:hover,
+.timeline__item--link:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 32px var(--color-shadow);
 }
 
 body[data-theme="dark"] .timeline__item {

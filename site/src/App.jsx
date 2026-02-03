@@ -38,6 +38,20 @@ const skills = [
 
 const projects = [
   {
+    title: "Coupe de France de Robotique",
+    description:
+      "Développement du logiciel de contrôle d'un robot autonome avec asservissement et programmation concurrente.",
+    tags: ["C/C++", "Python", "Embarqué"],
+    link: "https://github.com/DaVinciBot/CoupeDeRobotique",
+  },
+  {
+    title: "Bot Discord Fablab",
+    description:
+      "Développement backend, logique métier et intégration à l'écosystème Discord pour automatiser la gestion interne.",
+    tags: ["Python", "Discord API", "Git"],
+    link: "https://github.com/DeVinci-FabLab/FabLaBot",
+  },
+  {
     title: "Site de documentation technique",
     description:
       "Conception de l'architecture documentaire et rédaction de contenus techniques pour centraliser la documentation des membres.",
@@ -50,13 +64,6 @@ const projects = [
       "Structuration de la documentation technique et mise en place d'un référentiel partagé pour l'association.",
     tags: ["Docusaurus", "Markdown", "Git"],
     link: "https://docs.davincibot.fr",
-  },
-  {
-    title: "Bot Discord FabLab",
-    description:
-      "Développement backend, logique métier et intégration à l'écosystème Discord pour automatiser la gestion interne.",
-    tags: ["Python", "Discord API", "Git"],
-    link: "https://github.com/DeVinci-FabLab/FabLaBot",
   },
   {
     title: "Plateforme d'inscriptions à des formations",
@@ -77,31 +84,33 @@ const projects = [
     description:
       "Conception orientée objet et implémentation des algorithmes de recherche pour un jeu sous contraintes POO.",
     tags: ["C#", ".NET", "Git"],
-    link: "#",
+    link: "https://github.com/aust-1/Boggle",
   },
   {
     title: "LivinParis",
     description:
       "Modélisation par graphes, plus courts chemins et backend applicatif pour une application de livraison.",
     tags: ["C#", "Graphes", "MySQL"],
-    link: "#",
-  },
-  {
-    title: "Coupe de France de Robotique",
-    description:
-      "Développement du logiciel de contrôle d'un robot autonome avec asservissement et programmation concurrente.",
-    tags: ["C/C++", "Python", "Embarqué"],
-    link: "#",
+    link: "https://github.com/aust-1/LivinParis",
   },
 ];
 
 const experiences = [
+  {
+    role: "Référent Informatique – Coupe de France de Robotique",
+    company: "DaVinciBot",
+    period: "Depuis octobre 2024",
+    description:
+      "Pilotage de la partie informatique, répartition des tâches, formation des membres et livraison de logiciels robotiques fonctionnels.",
+    link: "https://davincibot.fr/project/coupe-de-robotique/",
+  },
   {
     role: "Directeur Technique Informatique",
     company: "DeVinci Fablab",
     period: "Depuis septembre 2025",
     description:
       "Supervision technique des projets et accompagnement des équipes étudiantes, structuration des pratiques de développement et amélioration de la qualité logicielle.",
+    link: "https://devinci-fablab.fr",
   },
   {
     role: "Membre du pôle numérique",
@@ -109,6 +118,7 @@ const experiences = [
     period: "Depuis novembre 2025",
     description:
       "Développement full-stack, contribution aux outils logiciels de l'association et conception d'un site d'inscriptions aux formations.",
+    link: "https://davincibot.fr",
   },
   {
     role: "Membre du pôle numérique",
@@ -116,51 +126,42 @@ const experiences = [
     period: "Depuis juin 2025",
     description:
       "Structuration de l'écosystème associatif, conception d'architectures logicielles et maintenance des outils numériques internes.",
+    link: "https://devinci-fablab.fr",
   },
   {
     role: "Responsable Formation",
     company: "DeVinci Fablab",
-    period: "Avril 2025 — Décembre 2025",
+    period: "Avril 2025 – Décembre 2025",
     description:
       "Organisation et structuration de l'offre de formation technique, création de parcours cohérents et supports pédagogiques réutilisables.",
+    link: "https://devinci-fablab.fr",
   },
   {
-    role: "Référent Informatique — Coupe de France de Robotique",
-    company: "DaVinciBot",
-    period: "Depuis octobre 2024",
-    description:
-      "Pilotage de la partie informatique, répartition des tâches, formation des membres et livraison de logiciels robotiques fonctionnels.",
-  },
-  {
-    role: "Responsable de module — Développement Technologique et Innovation",
+    role: "Responsable de module – Développement Technologique et Innovation",
     company: "EMLV",
     period: "Depuis septembre 2024",
     description:
       "Conception et encadrement d'un module orienté projet et innovation, accompagnement à la montée en compétences techniques.",
-  },
-  {
-    role: "Trésorier",
-    company: "DeVinci Lumière",
-    period: "Avril 2024 — Mai 2025",
-    description:
-      "Gestion financière et suivi administratif, documents normalisés et automatisation partielle des processus.",
+    link: "https://www.emlv.fr",
   },
 ];
 
 const trainings = [
   {
-    title: "Semestre à l'international — programme d'échange",
-    school: "UVIC — Universitat de Vic, Espagne",
-    period: "Juillet 2025 — Janvier 2026",
+    title: "Semestre à l'international – programme d'échange",
+    school: "UVIC – Universitat de Vic, Espagne",
+    period: "Juillet 2025 – Janvier 2026",
     description:
       "Cours suivis : Database, Python, “Optimization & Operational Research” (100% en anglais).",
+    link: "https://www.uvic.cat/en/",
   },
   {
-    title: "3ème année d'études d'ingénieur — majeure Big Data et IA",
-    school: "ESILV — École Supérieure d'Ingénieurs Léonard de Vinci",
+    title: "3ème année d'études d'ingénieur – majeure Big Data et IA",
+    school: "ESILV – École Supérieure d'Ingénieurs Léonard de Vinci",
     period: "Depuis septembre 2023",
     description:
       "Associations : DeVinci Fablab, DaVinciBot, LéoLearning, DeVinci Lumière, Cordées de la Réussite.",
+    link: "https://www.esilv.fr",
   },
   {
     title: "Double diplôme ingénieur manager",
@@ -168,13 +169,15 @@ const trainings = [
     period: "Depuis septembre 2023",
     description:
       "Cours additionnels : droit, gestion, corporate strategy, finance, marketing, comptabilité, intercultural management, vente.",
+    link: "https://www.emlv.fr",
   },
   {
-    title: "Baccalauréat général — spécialités Maths & Physique-Chimie",
-    school: "Groupe scolaire Sœur Rosalie — Louise de Marillac (Paris 5e)",
-    period: "Septembre 2020 — Juillet 2023",
+    title: "Baccalauréat général – spécialités Maths & Physique-Chimie",
+    school: "Groupe scolaire Sœur Rosalie – Louise de Marillac (Paris 5e)",
+    period: "Septembre 2020 – Juillet 2023",
     description:
       "Mention Très bien. Options : Mathématiques expertes et Coréen.",
+    link: "https://rosalie-marillac.com/",
   },
 ];
 
@@ -358,7 +361,13 @@ function App() {
           </div>
           <div className="grid grid--projects">
             {projects.map((project) => (
-              <article className="card" key={project.title}>
+              <a
+                className="card card--link"
+                key={project.title}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="card__media">
                   <div className="card__icon">⬡</div>
                   <div className="card__tags">
@@ -371,10 +380,8 @@ function App() {
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
                 </div>
-                <a className="card__link" href={project.link}>
-                  Voir le projet
-                </a>
-              </article>
+                <span className="card__link">Voir le projet</span>
+              </a>
             ))}
           </div>
         </section>
@@ -403,7 +410,13 @@ function App() {
           </div>
           <div className="timeline">
             {experiences.map((exp) => (
-              <article className="timeline__item" key={exp.role}>
+              <a
+                className="timeline__item timeline__item--link"
+                key={exp.role}
+                href={exp.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div>
                   <h3>{exp.role}</h3>
                   <p className="timeline__meta">
@@ -411,7 +424,7 @@ function App() {
                   </p>
                   <p>{exp.description}</p>
                 </div>
-              </article>
+              </a>
             ))}
           </div>
         </section>
@@ -426,13 +439,19 @@ function App() {
           </div>
           <div className="grid grid--training">
             {trainings.map((training) => (
-              <article className="card" key={training.title}>
+              <a
+                className="card card--link"
+                key={training.title}
+                href={training.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <h3>{training.title}</h3>
                 <p className="timeline__meta">
                   {training.school} · {training.period}
                 </p>
                 <p>{training.description}</p>
-              </article>
+              </a>
             ))}
           </div>
         </section>
@@ -444,7 +463,13 @@ function App() {
           </div>
           <div className="grid grid--contact">
             {contacts.map((contact) => (
-              <a className="contact" href={contact.href} key={contact.label}>
+              <a
+                className="contact"
+                href={contact.href}
+                key={contact.label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>{contact.label}</span>
                 <span>{contact.value}</span>
               </a>
