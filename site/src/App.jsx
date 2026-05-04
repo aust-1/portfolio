@@ -51,7 +51,7 @@ const languageContent = {
         resume: "Télécharger le CV",
         contact: "Me contacter",
       },
-      resumeUrl: "/CV%20Eliott%20Roussille%20-%20FR%20Ver.%20-%202026.pdf",
+      resumeUrl: "/CV%20Eliott%20Roussille%20-%20FR%20-%202026.pdf",
     },
     keySkills: [
       "Architecture logicielle",
@@ -272,7 +272,7 @@ const languageContent = {
         resume: "Download resume",
         contact: "Get in touch",
       },
-      resumeUrl: "/CV%20Eliott%20Roussille%20-%20EN%20Ver.%20-%202026.pdf",
+      resumeUrl: "/CV%20Eliott%20Roussille%20-%20EN%20-%202026.pdf",
     },
     keySkills: [
       "Software architecture",
