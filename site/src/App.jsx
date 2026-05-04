@@ -63,7 +63,7 @@ const languageContent = {
     chipsLabel: "Compétences clés",
     sections: {
       projects: {
-        title: "Projets sélectionnés",
+        title: "Mes Projets",
         subtitle:
           "Projets associatifs, logiciels et plateformes que je maintiens.",
         cta: "Voir le projet",
@@ -96,7 +96,7 @@ const languageContent = {
         link: "https://github.com/DaVinciBot/CoupeDeRobotique",
       },
       {
-        title: "Bot Discord Fablab",
+        title: "Bot Discord",
         description:
           "Développement backend, logique métier et intégration à l'écosystème Discord pour automatiser la gestion interne.",
         tags: ["Python", "Discord API", "Git"],
@@ -115,13 +115,6 @@ const languageContent = {
           "Développement full-stack et conception de la base de données pour gérer inscriptions, places et données utilisateurs.",
         tags: ["TypeScript", "Svelte", "Supabase"],
         link: "https://davincibot.fr",
-      },
-      {
-        title: "Site de documentation DaVinciBot",
-        description:
-          "Structuration de la documentation technique et mise en place d'un référentiel partagé pour l'association.",
-        tags: ["Docusaurus", "Markdown", "Git"],
-        link: "https://docs.davincibot.fr",
       },
       {
         title: "Générateur de documents financiers",
@@ -163,7 +156,7 @@ const languageContent = {
         link: "https://devinci-fablab.fr",
       },
       {
-        role: "Membre du pôle numérique",
+        role: "Responsable du pôle numérique",
         company: "DaVinciBot",
         period: "Depuis novembre 2025",
         description:
@@ -284,7 +277,7 @@ const languageContent = {
     chipsLabel: "Key skills",
     sections: {
       projects: {
-        title: "Selected projects",
+        title: "My projects",
         subtitle: "Association projects, software, and platforms I maintain.",
         cta: "View project",
       },
@@ -336,13 +329,6 @@ const languageContent = {
         link: "https://davincibot.fr",
       },
       {
-        title: "DaVinciBot documentation site",
-        description:
-          "Structured technical documentation and set up a shared reference for the association.",
-        tags: ["Docusaurus", "Markdown", "Git"],
-        link: "https://docs.davincibot.fr",
-      },
-      {
         title: "Financial document generator",
         description:
           "Dynamic generation of official documents and standardization of formats for invoices and expense reports.",
@@ -382,7 +368,7 @@ const languageContent = {
         link: "https://devinci-fablab.fr",
       },
       {
-        role: "Digital team member",
+        role: "Digital team Manager",
         company: "DaVinciBot",
         period: "Since Nov 2025",
         description:
