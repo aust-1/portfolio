@@ -1,0 +1,32 @@
+# Site statique (Vite + nginx), image publiée par .github/workflows/build-and-deploy.yml
+# (ghcr.io/aust-1/portfolio). Ce compose ne construit rien : il ne fait que la tirer et la lancer.
+name: portfolio
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "3"
+
+services:
+  portfolio:
+    image: ghcr.io/aust-1/portfolio:latest
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      proxy:
+        aliases:
+          - portfolio # cible du reverse_proxy dans ./Caddyfile
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    logging: *logging
+
+networks:
+  proxy:
+    external: true
+    name: ${PROXY_NETWORK:-proxy}

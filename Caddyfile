@@ -1,0 +1,9 @@
+# www -> apex (redirection permanente, avant le site principal)
+www.eliott-roussille.fr {
+	redir https://eliott-roussille.fr{uri} permanent
+}
+
+eliott-roussille.fr {
+	encode zstd gzip
+	reverse_proxy portfolio:80
+}
