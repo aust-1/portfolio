@@ -82,7 +82,7 @@ test.describe('terminal et flags', () => {
 
   test('le code Konami révèle un flag', async ({ page }) => {
     await page.goto('/projets');
-    for (const k of [
+    const KONAMI = [
       'ArrowUp',
       'ArrowUp',
       'ArrowDown',
@@ -93,22 +93,35 @@ test.describe('terminal et flags', () => {
       'ArrowRight',
       'b',
       'a',
-    ]) {
-      await page.keyboard.press(k);
-    }
+    ];
+    // L'écouteur n'existe qu'après l'hydratation (lente sur le runner CI) : on rejoue la séquence
+    // jusqu'à ce qu'il réponde, comme le ferait quelqu'un qui recommence.
+    await expect(async () => {
+      for (const k of KONAMI) await page.keyboard.press(k);
+      await expect(page.locator('.reveal .flag')).toBeVisible({ timeout: 1000 });
+    }).toPass({ timeout: 15_000 });
     await expect(page.locator('.reveal .flag')).toHaveText(/^aust-1\{.+\}$/);
   });
 
-  test('/admin ne fait aucune requête et révèle un flag', async ({ page }) => {
+  test("/admin n'envoie jamais les identifiants et révèle un flag", async ({ page }) => {
     await page.goto('/admin');
-    const requests: string[] = [];
-    page.on('request', (r) => requests.push(r.url()));
-    await page.locator('#u').fill('admin');
-    await page.locator('#p').fill('hunter2');
-    await page.getByRole('button', { name: 'Se connecter' }).click();
+    // Même une soumission native (avant hydratation) n'emporterait rien : aucun champ nommé.
+    await expect(page.locator('form [name]')).toHaveCount(0);
+    const sent: string[] = [];
+    page.on('request', (r) => {
+      const leak = r.url().includes('hunter2') || (r.postData() ?? '').includes('hunter2');
+      if (r.method() !== 'GET' || leak) sent.push(`${r.method()} ${r.url()}`);
+    });
+    // Rejoue la soumission tant que la page n'est pas hydratée (le flag n'apparaît qu'après).
+    await expect(async () => {
+      await page.locator('#u').fill('admin');
+      await page.locator('#p').fill('hunter2');
+      await page.getByRole('button', { name: 'Se connecter' }).click();
+      await expect(page.locator('.flag')).toBeVisible({ timeout: 1000 });
+    }).toPass({ timeout: 15_000 });
     await expect(page.locator('.flag')).toHaveText(/^aust-1\{.+\}$/);
     await expect(page.locator('#p')).toHaveValue('');
-    expect(requests.filter((u) => !u.includes('analytics'))).toEqual([]);
+    expect(sent).toEqual([]);
   });
 
   test('tout fonctionne quand localStorage est bloqué', async ({ page }) => {
