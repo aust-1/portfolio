@@ -37,6 +37,13 @@ fi
 echo "Déploiement OK ($(git rev-parse --short HEAD))"
 
 REPO_ROOT="$PWD"
+
+# Le Caddyfile de l'app a pu changer avec le code déployé : on republie les routes du proxy
+# partagé (dépôt opt), comme le fait scripts/app-deploy.sh.
+ROUTES_SYNC="$REPO_ROOT/../../scripts/routes-sync.sh"
+if [[ -x "$ROUTES_SYNC" ]]; then
+  "$ROUTES_SYNC" || echo "routes-sync.sh : routes non republiées (à faire à la main)" >&2
+fi
 OPT_BUMP="$REPO_ROOT/../../scripts/app-bump.sh"
 if [[ -x "$OPT_BUMP" ]]; then
   "$OPT_BUMP" --to "$(git rev-parse HEAD)" --commit "$(basename "$REPO_ROOT")" \
