@@ -4,12 +4,14 @@ import { mdsvex } from 'mdsvex';
 import rehypeSlug from 'rehype-slug';
 import { defineConfig } from 'vitest/config';
 import { flagsPlugin } from './scripts/flags.ts';
+import { textCharsetPlugin } from './scripts/text-charset.ts';
 
 const ANALYTICS = 'https://analytics.eliott-roussille.fr';
 
 export default defineConfig({
   plugins: [
     flagsPlugin(),
+    textCharsetPlugin(),
     sveltekit({
       extensions: ['.svelte', '.md'],
       preprocess: [mdsvex({ extensions: ['.md'], rehypePlugins: [rehypeSlug] })],
