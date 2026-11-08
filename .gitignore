@@ -30,3 +30,17 @@ dist-ssr
 
 # Documents de travail locaux (non versionnés)
 local/
+
+# SvelteKit
+/.svelte-kit
+/build
+vite.config.ts.timestamp-*
+test-results/
+playwright-report/
+
+# Fichiers générés au build (flags obfusqués, stats GitHub du jour)
+src/lib/flags/generated.ts
+src/lib/data/github.json
+
+# Espace de travail de l'exécution du plan
+.superpowers/

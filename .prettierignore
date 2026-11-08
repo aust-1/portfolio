@@ -1,0 +1,10 @@
+build/
+.svelte-kit/
+node_modules/
+local/
+pnpm-lock.yaml
+static/
+content/**/*.md
+test-results/
+playwright-report/
+.superpowers/
