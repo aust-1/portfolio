@@ -40,6 +40,29 @@ test.describe('pages', () => {
     await expect(hero.locator('.lead')).not.toContainText(/\d/);
   });
 
+  test('la barre de navigation reste en haut au défilement sans masquer les ancres', async ({
+    page,
+  }) => {
+    await page.goto('/ce-site');
+    const nav = page.locator('header.nav');
+    await page.mouse.wheel(0, 3000);
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(500);
+    await expect.poll(async () => (await nav.boundingBox())?.y).toBe(0);
+    await expect(nav.getByRole('link', { name: 'Projets' })).toBeInViewport();
+
+    // Une ancre de la table des matières s'arrête sous la barre, pas derrière.
+    const link = page.locator('.toc a[href^="#"]').last();
+    const target = page.locator((await link.getAttribute('href')) ?? '');
+    await link.click();
+    const navBottom = async () => {
+      const box = await nav.boundingBox();
+      return (box?.y ?? 0) + (box?.height ?? 0);
+    };
+    await expect
+      .poll(async () => ((await target.boundingBox())?.y ?? 0) - (await navBottom()))
+      .toBeGreaterThanOrEqual(0);
+  });
+
   test('le CV se télécharge', async ({ request }) => {
     const res = await request.get('/cv.pdf');
     expect(res.status()).toBe(200);

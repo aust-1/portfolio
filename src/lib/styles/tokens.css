@@ -23,6 +23,8 @@
   --container: 1440px;
   --margin: clamp(16px, 5vw, 72px);
   --gutter: 16px;
+  /* Barre de navigation collante : 64 px de haut + bordure de 2 px. */
+  --nav-h: 66px;
 }
 
 @media (prefers-color-scheme: dark) {

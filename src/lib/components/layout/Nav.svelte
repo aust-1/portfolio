@@ -16,7 +16,7 @@
     page.url.pathname === href || page.url.pathname.startsWith(`${href}/`);
 </script>
 
-<header class="nav" class:menu-open={menuOpen}>
+<header class="nav own-grain">
   <div class="container bar">
     <a class="home" href="/" aria-label="Accueil, Eliott Roussille"><Monogram /></a>
 
@@ -61,14 +61,13 @@
 </header>
 
 <style>
+  /* Collante, au-dessus des images (.no-grain, z-index 51) qu'elle recouvre au défilement,
+     sous le terminal (60). */
   .nav {
     border-bottom: 2px solid var(--er-ink);
     background: var(--er-bg);
-    position: relative;
-    z-index: 40;
-  }
-  /* Menu mobile ouvert : au-dessus des images (.no-grain, z-index 51) qu'il recouvre. */
-  .nav.menu-open {
+    position: sticky;
+    top: 0;
     z-index: 55;
   }
   .bar {

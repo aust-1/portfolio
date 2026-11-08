@@ -145,7 +145,7 @@
   }
   .toc {
     position: sticky;
-    top: 24px;
+    top: calc(var(--nav-h) + 24px);
   }
   .prose {
     grid-column: 5 / span 8;
