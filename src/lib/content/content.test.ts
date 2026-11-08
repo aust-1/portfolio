@@ -48,7 +48,7 @@ describe('schémas', () => {
   });
 
   it('refuse une apostrophe typographique dans le titre', () => {
-    expect(() => project({ title: 'L’app' })).toThrow();
+    expect(() => project({ title: `L${String.fromCharCode(0x2019)}app` })).toThrow();
   });
 });
 

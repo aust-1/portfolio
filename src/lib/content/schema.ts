@@ -7,7 +7,10 @@ const Month = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, 'date attendue au form
 const Text = z
   .string()
   .min(1)
-  .refine((s) => !s.includes('’'), "apostrophe typographique ’ interdite, utiliser '");
+  .refine(
+    (s) => !s.includes(String.fromCharCode(0x2019)),
+    "apostrophe typographique interdite, utiliser '",
+  );
 
 const Slug = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'slug en minuscules et tirets');
 

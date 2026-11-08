@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { Skill, SkillFamily } from '#lib/content/skills.ts';
+  import { readHash } from '#lib/hash.ts';
 
   // Vue ludique des compétences : les pastilles tombent et rebondissent à l'arrivée à l'écran,
   // leur taille dit combien de projets les prouvent, et survoler l'une d'elles éclaire celles qui
@@ -35,9 +36,14 @@
   const maxWeight = $derived(Math.max(1, ...skills.map((s) => s.weight)));
 
   onMount(() => {
-    const hash = decodeURIComponent(location.hash.slice(1));
+    // Filet de sécurité : quoi qu'il arrive, les pastilles finissent visibles.
+    const failOpen = setTimeout(() => (dropped = true), 2500);
+    const hash = readHash(location.hash);
     if (!compact && skills.some((s) => s.slug === hash)) pinned = hash;
-    if (!field) return;
+    if (!field || typeof IntersectionObserver === 'undefined') {
+      dropped = true;
+      return () => clearTimeout(failOpen);
+    }
     const io = new IntersectionObserver(
       ([e]) => {
         if (e?.isIntersecting) {
@@ -48,7 +54,10 @@
       { threshold: 0 },
     );
     io.observe(field);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      clearTimeout(failOpen);
+    };
   });
 
   // Délai et hauteur de chute pseudo-aléatoires mais stables (pas de différence SSR / client).
