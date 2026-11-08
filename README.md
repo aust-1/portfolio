@@ -19,12 +19,16 @@ Mettre à jour un projet ou un rôle : éditer le fichier Markdown correspondant
 
 ## Déploiement
 
-Même modèle que les autres apps du dépôt `opt` : build sur le VPS par `infra/deploy.sh`, lancé par
-le workflow **Déploiement** après une CI verte, et chaque nuit (la CI planifiée relance tout).
+Comme toutes les apps du VPS : après une CI verte (à chaque push et chaque nuit), le workflow
+**Déploiement** se connecte au compte `gh-deploy` avec une clé bridée à `sudo opt-deploy
+portfolio`. Le serveur avance le sous-module sur `origin/main`, reconstruit l'image et attend le
+healthcheck. Mécanisme et mise en place : `docs/ci-deploy.md` du dépôt opt. À la main, sur le
+serveur : `sudo opt-deploy portfolio`.
 
 - `.env` (non versionné) : `FLAG_1` à `FLAG_5`, voir `.env.example`. Le build échoue si une valeur
   ne correspond pas à son empreinte dans `src/lib/flags/hashes.ts`.
-- Secrets GitHub : `VPS_HOST`, `VPS_USER`, `VPS_PATH`, `VPS_SSH_KEY`, `VPS_KNOWN_HOSTS`.
+- Secrets GitHub : `VPS_HOST`, `VPS_SSH_KEY` (clé dédiée, autorisée par
+  `deploy-install.sh --key portfolio`), `VPS_KNOWN_HOSTS`.
 - L'image finale est un Caddy sans privilèges (`infra/Caddyfile.site`) qui pose les en-têtes de
   sécurité ; le Caddy partagé du VPS route `eliott-roussille.fr` vers `portfolio:8080`.
 - Les stats GitHub viennent de `aust-1/github-stats` (`generated/portfolio.json`) ; en cas d'échec,

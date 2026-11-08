@@ -1,13 +1,14 @@
 name: Déploiement
 # Déploie sur le VPS quand la CI de `main` est verte : après chaque push, et chaque nuit (la CI
 # planifiée relance tout ; le rebuild rafraîchit les stats GitHub et le statut des rôles).
+#
+# La clé SSH de ce dépôt est bridée sur le serveur à une seule commande, « sudo opt-deploy
+# portfolio » : le workflow n'envoie rien d'autre. Mécanisme et mise en place : docs/ci-deploy.md
+# du dépôt opt (aust-1/vps-strasbourg-opt).
 # Secrets requis (Settings → Secrets and variables → Actions) :
-#   VPS_HOST, VPS_USER, VPS_PATH (ex. /opt/apps/portfolio : sous-module du dépôt opt)
-#   VPS_SSH_KEY     clé privée dédiée au déploiement
-#   VPS_KNOWN_HOSTS clé d'hôte du serveur, obtenue UNE fois depuis un réseau de confiance :
-#                     ssh-keyscan -t ed25519 <ip-du-vps>
-#                   (elle est épinglée : on ne fait jamais confiance à la première clé vue,
-#                   ce qui permettrait à un intercepteur de se faire passer pour le serveur)
+#   VPS_HOST         IP ou nom du VPS
+#   VPS_SSH_KEY      clé privée dédiée à ce dépôt (autorisée par deploy-install.sh --key portfolio)
+#   VPS_KNOWN_HOSTS  clé d'hôte du serveur, épinglée (jamais de confiance à la première clé vue)
 on:
   workflow_run:
     workflows: [CI]
@@ -27,11 +28,9 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Déployer via SSH (clé d'hôte épinglée)
+      - name: Déployer (clé bridée à « opt-deploy portfolio » sur le VPS)
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
-          VPS_USER: ${{ secrets.VPS_USER }}
-          VPS_PATH: ${{ secrets.VPS_PATH }}
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
         run: |
@@ -40,7 +39,5 @@ jobs:
           printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_deploy
           printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/id_deploy ~/.ssh/known_hosts
-          ssh -i ~/.ssh/id_deploy \
-            -o StrictHostKeyChecking=yes \
-            -o UserKnownHostsFile=$HOME/.ssh/known_hosts \
-            "$VPS_USER@$VPS_HOST" "cd '$VPS_PATH' && ./infra/deploy.sh"
+          ssh -T -i ~/.ssh/id_deploy -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" "gh-deploy@$VPS_HOST"
