@@ -1,0 +1,63 @@
+/* Texte long issu du Markdown : Inter 18/1,7, colonne de 65 à 75 signes (charte p. 07). */
+.prose {
+  max-width: 68ch;
+  color: var(--er-text);
+  font: 400 18px / 1.7 var(--font-text);
+}
+.prose > * + * {
+  margin-top: 1em;
+}
+.prose h2 {
+  font: 900 clamp(26px, 2.6vw, 36px) / 1 var(--font-display);
+  letter-spacing: -0.04em;
+  color: var(--er-ink);
+  margin-top: 2.2em;
+  scroll-margin-top: 24px;
+}
+.prose h2:first-child {
+  margin-top: 0;
+}
+.prose h3 {
+  font: 700 22px / 1.2 var(--font-display);
+  letter-spacing: -0.02em;
+  color: var(--er-ink);
+  margin-top: 1.6em;
+}
+.prose strong {
+  color: var(--er-ink);
+  font-weight: 500;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.2em;
+}
+.prose li + li {
+  margin-top: 0.35em;
+}
+.prose li::marker {
+  color: var(--er-signal-text);
+  font-family: var(--font-mono);
+}
+.prose code {
+  font: 500 0.86em / 1 var(--font-mono);
+  background: var(--er-surface);
+  color: var(--er-ink);
+  padding: 2px 6px;
+}
+/* Blocs de code : l'aplat bleu unique de la page (charte p. 07). */
+.prose pre {
+  background: var(--er-blue);
+  color: var(--er-on-blue);
+  padding: 20px 24px;
+  overflow-x: auto;
+  font: 400 14px / 1.6 var(--font-mono);
+}
+.prose pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+.prose a {
+  color: var(--er-signal-text);
+}

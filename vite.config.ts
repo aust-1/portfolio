@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { mdsvex } from 'mdsvex';
+import rehypeSlug from 'rehype-slug';
 import { defineConfig } from 'vitest/config';
 
 const ANALYTICS = 'https://analytics.eliott-roussille.fr';
@@ -9,7 +10,7 @@ export default defineConfig({
   plugins: [
     sveltekit({
       extensions: ['.svelte', '.md'],
-      preprocess: [mdsvex({ extensions: ['.md'] })],
+      preprocess: [mdsvex({ extensions: ['.md'], rehypePlugins: [rehypeSlug] })],
       compilerOptions: {
         runes: ({ filename }) =>
           filename.split(/[/\\]/).includes('node_modules') ? undefined : true,

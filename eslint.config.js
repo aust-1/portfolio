@@ -26,6 +26,11 @@ export default ts.config(
     rules: {
       // Site sans chemin de base (`paths.base`) : resolve() n'apporte rien sur des liens internes.
       'svelte/no-navigation-without-resolve': 'off',
+      // `const { Body, ...rest } = x` sert à retirer une clé : ce n'est pas une variable oubliée.
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { ignoreRestSiblings: true, argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
     },
   },
   {
