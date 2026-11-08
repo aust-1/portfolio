@@ -1,6 +1,8 @@
 import { getFeatured, getProjects, getRoles } from '#lib/content/index.ts';
 import { deriveSkills } from '#lib/content/skills.ts';
 import { maxOverlap } from '#lib/content/timeline.ts';
+import github from '#lib/data/github.json';
+import type { GithubStats } from '#lib/github/normalize.ts';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = () => {
@@ -10,6 +12,7 @@ export const load: PageLoad = () => {
   // Aperçu : les compétences portées par plusieurs projets, puis les domaines.
   const preview = skills.filter((s) => s.weight > 1 || s.family === 'domaine').slice(0, 24);
   return {
+    github: github as GithubStats,
     skills: preview,
     skillCount: skills.length,
     titles: Object.fromEntries(getProjects().map((p) => [p.slug, p.title])) as Record<

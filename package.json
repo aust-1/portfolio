@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "node scripts/github-stats.ts && vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
     "lint": "eslint .",
@@ -17,7 +17,8 @@
     "format:check": "prettier --check .",
     "test": "vitest run",
     "e2e": "playwright test",
-    "prepare": "svelte-kit sync || echo ''"
+    "prepare": "svelte-kit sync && node scripts/github-stats.ts || echo ''",
+    "stats": "node scripts/github-stats.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

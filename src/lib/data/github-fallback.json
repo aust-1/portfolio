@@ -1,0 +1,90 @@
+{
+  "fetchedAt": "2026-11-08T12:00:00.000Z",
+  "source": "fallback",
+  "contributions": {
+    "commits": 2360,
+    "prs": 18,
+    "issues": 54,
+    "reviews": 5,
+    "repos": 11
+  },
+  "stars": 23,
+  "linesChanged": 0,
+  "repoCount": 17,
+  "languages": [
+    {
+      "name": "C#",
+      "color": "#7355dd",
+      "share": 0.32684671326908243
+    },
+    {
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "share": 0.2742876823752225
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "share": 0.1783277756600925
+    },
+    {
+      "name": "Kotlin",
+      "color": "#A97BFF",
+      "share": 0.08577150609443142
+    },
+    {
+      "name": "JavaScript",
+      "color": "#f1e05a",
+      "share": 0.07492203750003752
+    },
+    {
+      "name": "Svelte",
+      "color": "#ff3e00",
+      "share": 0.05984428510113365
+    }
+  ],
+  "recent": [
+    {
+      "name": "vps-strasbourg-opt",
+      "description": "dossier opt de mon vps à strasbourg",
+      "url": "https://github.com/aust-1/vps-strasbourg-opt",
+      "pushedAt": "2026-11-08T16:42:18Z",
+      "language": "Shell"
+    },
+    {
+      "name": "portfolio",
+      "description": null,
+      "url": "https://github.com/aust-1/portfolio",
+      "pushedAt": "2026-11-08T16:42:04Z",
+      "language": "Svelte"
+    },
+    {
+      "name": "lectures-notes",
+      "description": null,
+      "url": "https://github.com/aust-1/lectures-notes",
+      "pushedAt": "2026-11-08T14:17:02Z",
+      "language": "CSS"
+    },
+    {
+      "name": "github-stats",
+      "description": "Repository-hosted github stats",
+      "url": "https://github.com/aust-1/github-stats",
+      "pushedAt": "2026-11-08T11:24:05Z",
+      "language": "Zig"
+    },
+    {
+      "name": "bourse-tracker",
+      "description": "Suivi personnel d'un PEA (actions et ETF européens, en EUR) : journal daté de chaque ordre, valeur du portefeuille en quasi temps réel, alertes par Discord et email.",
+      "url": "https://github.com/aust-1/bourse-tracker",
+      "pushedAt": "2026-11-06T15:26:41Z",
+      "language": "TypeScript"
+    },
+    {
+      "name": "seterra-parisian-metro",
+      "description": "A game similar to Seterra that teaches you how to place stations on the Paris Metro",
+      "url": "https://github.com/aust-1/seterra-parisian-metro",
+      "pushedAt": "2026-10-01T01:20:35Z",
+      "language": "Kotlin"
+    }
+  ]
+}
