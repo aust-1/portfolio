@@ -1,0 +1,46 @@
+# Caddy interne au conteneur : sert le site statique et pose les en-têtes de sécurité.
+# TLS est géré par le reverse proxy Caddy partagé du VPS (voir ../Caddyfile), d'où le HTTP simple.
+{
+	admin off
+	auto_https off
+	persist_config off
+}
+
+:8080 {
+	root * /srv
+	encode zstd gzip
+
+	header {
+		# Les pages prérendues portent leur propre CSP en <meta> (scripts autorisés par empreinte).
+		# Ici, les directives qu'une balise <meta> ne peut pas appliquer.
+		Content-Security-Policy "frame-ancestors 'none'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests"
+		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), accelerometer=(), gyroscope=(), magnetometer=(), interest-cohort=()"
+		Cross-Origin-Opener-Policy "same-origin"
+		Cross-Origin-Resource-Policy "same-origin"
+		# Flag 2 du CTF du site : la valeur vient de l'environnement du conteneur.
+		X-Flag "{$X_FLAG}"
+		-Server
+	}
+
+	# Fichiers versionnés par empreinte : cache d'un an. Le reste : revalidation à chaque visite.
+	@immutable path /_app/immutable/*
+	header @immutable Cache-Control "public, max-age=31536000, immutable"
+	@mutable not path /_app/immutable/*
+	header @mutable Cache-Control "no-cache"
+
+	# security.txt et pgp.asc en texte brut, lisibles directement dans le navigateur.
+	@text path /.well-known/security.txt /pgp.asc
+	header @text Content-Type "text/plain; charset=utf-8"
+
+	try_files {path} {path}.html {path}/index.html
+	file_server
+
+	handle_errors 404 {
+		rewrite * /404.html
+		file_server
+	}
+}

@@ -1,3 +1,6 @@
+# Routage déclaré côté dépôt opt (reverse proxy Caddy partagé du VPS, TLS automatique).
+# Les en-têtes de sécurité sont posés par le Caddy interne du conteneur (infra/Caddyfile.site).
+
 # www -> apex (redirection permanente, avant le site principal)
 www.eliott-roussille.fr {
 	redir https://eliott-roussille.fr{uri} permanent
@@ -5,5 +8,5 @@ www.eliott-roussille.fr {
 
 eliott-roussille.fr {
 	encode zstd gzip
-	reverse_proxy portfolio:80
+	reverse_proxy portfolio:8080
 }

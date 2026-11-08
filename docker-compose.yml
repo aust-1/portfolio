@@ -1,17 +1,36 @@
-# Site statique (Vite + nginx), image publiée par .github/workflows/build-and-deploy.yml
-# (ghcr.io/aust-1/portfolio). Ce compose ne construit rien : il ne fait que la tirer et la lancer.
+# Déploiement sur le VPS : `docker compose up -d --build` (le fichier .env est lu automatiquement).
+#
+# Le VPS héberge un reverse proxy Caddy partagé (ports 80/443) : ce fichier ne publie aucun
+# port. Le routage vers ce service est déclaré dans ./Caddyfile (voir docs/DEPLOY.md du dépôt
+# opt), qui cible l'alias réseau ci-dessous sur le réseau externe partagé.
 name: portfolio
 
 x-logging: &logging
   driver: json-file
   options:
     max-size: 10m
-    max-file: "3"
+    max-file: '3'
 
 services:
   portfolio:
-    image: ghcr.io/aust-1/portfolio:latest
+    build:
+      context: .
+      dockerfile: infra/Dockerfile
+      args:
+        FLAG_1: ${FLAG_1:?manquant dans .env}
+        FLAG_2: ${FLAG_2:?manquant dans .env}
+        FLAG_3: ${FLAG_3:?manquant dans .env}
+        FLAG_4: ${FLAG_4:?manquant dans .env}
+        FLAG_5: ${FLAG_5:?manquant dans .env}
     restart: unless-stopped
+    environment:
+      X_FLAG: ${FLAG_2:?manquant dans .env}
+    # Conteneur en lecture seule : Caddy n'écrit que dans un tmpfs.
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
     security_opt:
       - no-new-privileges:true
     networks:
@@ -19,7 +38,7 @@ services:
         aliases:
           - portfolio # cible du reverse_proxy dans ./Caddyfile
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80/"]
+      test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:8080/']
       interval: 30s
       timeout: 5s
       retries: 3
