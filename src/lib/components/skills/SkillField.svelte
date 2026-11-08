@@ -67,6 +67,19 @@
     return (h % 1000) / 1000;
   }
 
+  // Quitter une pastille n'efface le survol qu'après un court délai : passer de l'une à sa
+  // voisine traverse l'espace entre elles, qui sinon rallume tout le champ puis le réassombrit.
+  let leaveTimer: ReturnType<typeof setTimeout> | undefined;
+  function enter(slug: string) {
+    clearTimeout(leaveTimer);
+    hovered = slug;
+  }
+  function leave() {
+    clearTimeout(leaveTimer);
+    leaveTimer = setTimeout(() => (hovered = null), 180);
+  }
+  onMount(() => () => clearTimeout(leaveTimer));
+
   function toggle(slug: string) {
     pinned = pinned === slug ? null : slug;
   }
@@ -93,10 +106,10 @@
                   class:lit={related.has(s.slug)}
                   class:main={focus === s.slug}
                   href="/competences#{s.slug}"
-                  onmouseenter={() => (hovered = s.slug)}
-                  onmouseleave={() => (hovered = null)}
-                  onfocus={() => (hovered = s.slug)}
-                  onblur={() => (hovered = null)}>{s.name}<sup>{s.weight}</sup></a
+                  onmouseenter={() => enter(s.slug)}
+                  onmouseleave={leave}
+                  onfocus={() => enter(s.slug)}
+                  onblur={leave}>{s.name}<sup>{s.weight}</sup></a
                 >
               {:else}
                 <button
@@ -106,10 +119,10 @@
                   class:main={focus === s.slug}
                   aria-pressed={pinned === s.slug}
                   aria-controls="skill-panel"
-                  onmouseenter={() => (hovered = s.slug)}
-                  onmouseleave={() => (hovered = null)}
-                  onfocus={() => (hovered = s.slug)}
-                  onblur={() => (hovered = null)}
+                  onmouseenter={() => enter(s.slug)}
+                  onmouseleave={leave}
+                  onfocus={() => enter(s.slug)}
+                  onblur={leave}
                   onclick={() => toggle(s.slug)}>{s.name}<sup>{s.weight}</sup></button
                 >
                 <noscript>
@@ -179,10 +192,11 @@
     text-decoration: none;
     cursor: pointer;
     transition:
-      background 120ms,
-      color 120ms,
-      opacity 160ms,
-      transform 160ms;
+      background 260ms var(--ease-out),
+      color 260ms var(--ease-out),
+      opacity 320ms var(--ease-out),
+      transform 320ms var(--ease-out);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   }
   li:nth-child(3n) .pill {
     background: var(--er-ink);
@@ -196,7 +210,7 @@
     color: var(--er-signal);
   }
   .focusing .pill {
-    opacity: 0.32;
+    opacity: 0.4;
   }
   .focusing .pill.lit {
     opacity: 1;
