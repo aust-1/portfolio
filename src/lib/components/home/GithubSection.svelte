@@ -23,7 +23,10 @@
       value: stats.contributions.prs + stats.contributions.reviews,
       label: `pull requests et revues ${scope}`,
     },
-    { value: stats.repoCount, label: 'dépôts publics' },
+    {
+      value: stats.repoCount,
+      label: stats.source === 'live' ? 'dépôts, privés compris' : 'dépôts publics',
+    },
     ...(stats.linesChanged > 0 ? [{ value: stats.linesChanged, label: 'lignes modifiées' }] : []),
   ]);
 </script>
@@ -44,7 +47,11 @@
 
   <div class="cols">
     <div>
-      <h3 class="t-label">langages (part du code des dépôts publics)</h3>
+      <h3 class="t-label">
+        langages ({stats.source === 'live'
+          ? 'part du code, dépôts privés compris'
+          : 'part du code des dépôts publics'})
+      </h3>
       <ol class="langs">
         {#each stats.languages as l (l.name)}
           <li title="{l.name} : {Math.round(l.share * 100)} %">

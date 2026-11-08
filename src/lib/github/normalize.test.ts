@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import fixture from './fixture-portfolio.json';
 import { normalize } from './normalize.ts';
 
 const NOW = new Date('2026-11-08T05:30:00Z');
@@ -83,5 +84,12 @@ describe('normalize', () => {
 
   it('refuse un JSON qui exposerait e-mails ou vues', () => {
     expect(() => normalize({ ...portfolio, emails: ['x@y.z'] }, repos, NOW)).toThrow();
+  });
+
+  it('accepte la sortie réelle du filtre jq de aust-1/github-stats (contrat)', () => {
+    // fixture-portfolio.json : produit par l'étape « Export portfolio.json » sur un faux dump.
+    const s = normalize(fixture, repos, NOW);
+    expect(s.languages[0]?.name).toBe('TypeScript');
+    expect(s.languages.every((l) => l.color.startsWith('#'))).toBe(true);
   });
 });
