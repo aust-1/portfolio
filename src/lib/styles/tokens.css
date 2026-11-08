@@ -1,0 +1,58 @@
+/* tokens.css · charte graphique v2 (rév. 2.0, nov. 2026), page 09 : valeurs exactes. */
+:root {
+  --er-bg: #e7e5df;
+  --er-ink: #0b0c0e;
+  --er-text: #2e3138;
+  --er-muted: #4a4d55;
+  --er-surface: #d6d3cb;
+  --er-dot: #c9c5bb;
+  --er-signal: #ff5a1f;
+  --er-signal-text: #b53c0b;
+  --er-blue: #2b3bd6;
+  --er-grain-opacity: 0.22;
+
+  /* Texte posé sur les aplats (charte p. 02 : orange → encre, bleu → papier). */
+  --er-on-signal: #0b0c0e;
+  --er-on-blue: #e7e5df;
+
+  --font-display: 'Inter Tight', system-ui, sans-serif;
+  --font-text: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Grille : conteneur 1440, marges 72, 12 colonnes, gouttière 16 (charte p. 06). */
+  --container: 1440px;
+  --margin: clamp(16px, 5vw, 72px);
+  --gutter: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --er-bg: #0e0f12;
+    --er-ink: #eeece6;
+    --er-text: #c4c6cb;
+    --er-muted: #a2a5ad;
+    --er-surface: #1c1e23;
+    --er-dot: #24262c;
+    --er-signal: #ff6a2e;
+    --er-signal-text: #ff8a57;
+    --er-blue: #3646e8;
+    --er-grain-opacity: 0.17;
+    --er-on-signal: #0e0f12;
+    --er-on-blue: #eeece6;
+  }
+}
+
+[data-theme='dark'] {
+  --er-bg: #0e0f12;
+  --er-ink: #eeece6;
+  --er-text: #c4c6cb;
+  --er-muted: #a2a5ad;
+  --er-surface: #1c1e23;
+  --er-dot: #24262c;
+  --er-signal: #ff6a2e;
+  --er-signal-text: #ff8a57;
+  --er-blue: #3646e8;
+  --er-grain-opacity: 0.17;
+  --er-on-signal: #0e0f12;
+  --er-on-blue: #eeece6;
+}

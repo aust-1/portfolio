@@ -23,6 +23,10 @@ export default ts.config(
   ...svelte.configs.prettier,
   {
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    rules: {
+      // Site sans chemin de base (`paths.base`) : resolve() n'apporte rien sur des liens internes.
+      'svelte/no-navigation-without-resolve': 'off',
+    },
   },
   {
     files: ['**/*.svelte', '**/*.svelte.ts'],
