@@ -2,6 +2,7 @@
   import Contact from '#lib/components/home/Contact.svelte';
   import Featured from '#lib/components/home/Featured.svelte';
   import Hero from '#lib/components/home/Hero.svelte';
+  import TimelinePreview from '#lib/components/home/TimelinePreview.svelte';
   import type { PageProps } from './$types';
 
   let { data }: PageProps = $props();
@@ -19,12 +20,14 @@
 <Hero nextStep={data.nextStep} />
 <div class="sections">
   <Featured projects={data.featured} total={data.total} {today} />
+  <TimelinePreview roles={data.roles} peak={data.peak} {today} />
   <Contact />
 </div>
 
 <style>
   .sections {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 120px;
     margin-top: 56px;
   }

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { replaceState } from '$app/navigation';
+  import { goto } from '$app/navigation';
   import ProjectCard from '#lib/components/project/ProjectCard.svelte';
   import SectionHead from '#lib/components/SectionHead.svelte';
   import { TAG_LABELS, type Tag } from '#lib/content/schema.ts';
@@ -23,7 +23,7 @@
     const url = new URL(location.href);
     url.searchParams.delete('tag');
     for (const t of active) url.searchParams.append('tag', t);
-    replaceState(url, {});
+    goto(url, { shallow: true, replace: true });
   }
 </script>
 

@@ -94,6 +94,7 @@ a:hover {
 
 .container {
   width: 100%;
+  min-width: 0;
   max-width: var(--container);
   margin-inline: auto;
   padding-inline: var(--margin);
