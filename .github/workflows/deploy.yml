@@ -1,6 +1,6 @@
 name: Déploiement
-# Déploie sur le VPS quand la CI de `main` est verte, et chaque nuit (le rebuild rafraîchit les
-# stats GitHub, publiées vers 04:30 UTC par aust-1/github-stats, et le statut des rôles).
+# Déploie sur le VPS quand la CI de `main` est verte : après chaque push, et chaque nuit (la CI
+# planifiée relance tout ; le rebuild rafraîchit les stats GitHub et le statut des rôles).
 # Secrets requis (Settings → Secrets and variables → Actions) :
 #   VPS_HOST, VPS_USER, VPS_PATH (ex. /opt/apps/portfolio : sous-module du dépôt opt)
 #   VPS_SSH_KEY     clé privée dédiée au déploiement
@@ -13,8 +13,6 @@ on:
     workflows: [CI]
     types: [completed]
     branches: [main]
-  schedule:
-    - cron: '30 5 * * *'
   workflow_dispatch:
 
 concurrency:
@@ -26,7 +24,7 @@ permissions:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Déployer via SSH (clé d'hôte épinglée)

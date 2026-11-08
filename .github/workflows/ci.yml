@@ -3,6 +3,11 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Chaque nuit, après la publication des stats GitHub (04:30 UTC) : si la CI est verte, le
+  # workflow Déploiement reconstruit le site (stats et statut des rôles à jour). Une CI rouge
+  # ne déploie jamais.
+  schedule:
+    - cron: '30 5 * * *'
 
 concurrency:
   group: ci-${{ github.ref }}
