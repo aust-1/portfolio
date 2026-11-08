@@ -39,7 +39,7 @@
   <ul class="tiles">
     {#each tiles as t (t.label)}
       <li>
-        <span class="num">{fmt(t.value)}</span>
+        <span class="num" style:--chars={fmt(t.value).length}>{fmt(t.value)}</span>
         <span class="t-label">{t.label}</span>
       </li>
     {/each}
@@ -99,9 +99,13 @@
     gap: 8px;
     padding: 20px 24px;
     background: var(--er-surface);
+    container-type: inline-size;
   }
+  /* Un chiffre de la display 900 fait environ 0,66 em : la taille est plafonnée pour que
+     le nombre tienne dans la tuile, quel que soit son nombre de caractères. */
   .num {
-    font: 900 clamp(40px, 4.4vw, 64px) / 0.9 var(--font-display);
+    font: 900 clamp(28px, min(4.4vw, 100cqi / (var(--chars, 4) * 0.66)), 64px) / 0.9
+      var(--font-display);
     letter-spacing: -0.04em;
     color: var(--er-ink);
   }
