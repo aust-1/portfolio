@@ -58,6 +58,8 @@
   padding: 0;
   font-size: inherit;
 }
-.prose a {
+/* :not(.cta) : sans lui, cette règle (0,1,1) bat .cta (0,1,0) et met le texte du bouton
+   en orange sur fond orange. */
+.prose a:not(.cta) {
   color: var(--er-signal-text);
 }
