@@ -63,7 +63,8 @@ export const ProjectSchema = z.object({
   /** Alimente /competences : une compétence n'existe que si un projet la porte. */
   stack: z.array(Text).min(1),
   repo: z.string().url().optional(),
-  private: z.boolean(),
+  /** Dépôt privé : affiche « dépôt privé » et des extraits commentés. (`private` est réservé par mdsvex.) */
+  privateRepo: z.boolean(),
   cover: Media.optional(),
   media: z.array(Media).default([]),
   awards: z.array(Text).default([]),

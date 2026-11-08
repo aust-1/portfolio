@@ -14,7 +14,7 @@ function project(over: Partial<Project> = {}): Project {
     period: { start: '2025-01' },
     role: 'Développeur',
     stack: ['TypeScript'],
-    private: false,
+    privateRepo: false,
     ...over,
   });
 }
