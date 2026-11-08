@@ -3,11 +3,13 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { mdsvex } from 'mdsvex';
 import rehypeSlug from 'rehype-slug';
 import { defineConfig } from 'vitest/config';
+import { flagsPlugin } from './scripts/flags.ts';
 
 const ANALYTICS = 'https://analytics.eliott-roussille.fr';
 
 export default defineConfig({
   plugins: [
+    flagsPlugin(),
     sveltekit({
       extensions: ['.svelte', '.md'],
       preprocess: [mdsvex({ extensions: ['.md'], rehypePlugins: [rehypeSlug] })],

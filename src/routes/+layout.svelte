@@ -2,9 +2,12 @@
   import '#lib/styles/base.css';
   import Footer from '#lib/components/layout/Footer.svelte';
   import Nav from '#lib/components/layout/Nav.svelte';
+  import KonamiReveal from '#lib/components/flags/KonamiReveal.svelte';
+  import Terminal from '#lib/components/terminal/Terminal.svelte';
+  import { backdoor, submitFlag } from '#lib/flags/client.ts';
   import type { LayoutProps } from './$types';
 
-  let { children }: LayoutProps = $props();
+  let { children, data }: LayoutProps = $props();
 </script>
 
 <a class="skip t-ui" href="#contenu">Aller au contenu</a>
@@ -13,6 +16,8 @@
   {@render children()}
 </main>
 <Footer />
+<Terminal context={{ ...data.terminal, submit: submitFlag, backdoor }} />
+<KonamiReveal />
 
 <style>
   .skip {
