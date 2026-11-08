@@ -12,9 +12,12 @@ function files(dir: string): string[] {
 
 describe('typographie', () => {
   it("n'utilise jamais l'apostrophe typographique dans le site", () => {
-    const offenders = [...files('src'), ...files('content')].filter(
-      (f) => !f.endsWith('typography.test.ts') && readFileSync(f, 'utf8').includes('’'),
-    );
+    const offenders = [
+      ...files('src'),
+      ...files('content'),
+      ...files('tests'),
+      ...files('scripts'),
+    ].filter((f) => !f.endsWith('typography.test.ts') && readFileSync(f, 'utf8').includes('’'));
     expect(offenders).toEqual([]);
   });
 });

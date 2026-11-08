@@ -16,7 +16,7 @@
     page.url.pathname === href || page.url.pathname.startsWith(`${href}/`);
 </script>
 
-<header class="nav">
+<header class="nav" class:menu-open={menuOpen}>
   <div class="container bar">
     <a class="home" href="/" aria-label="Accueil, Eliott Roussille"><Monogram /></a>
 
@@ -66,6 +66,10 @@
     background: var(--er-bg);
     position: relative;
     z-index: 40;
+  }
+  /* Menu mobile ouvert : au-dessus des images (.no-grain, z-index 51) qu'il recouvre. */
+  .nav.menu-open {
+    z-index: 55;
   }
   .bar {
     display: flex;

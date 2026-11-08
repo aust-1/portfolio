@@ -1,0 +1,103 @@
+import type { Page } from '@playwright/test';
+import { expect, test } from './fixtures.ts';
+
+// Le raccourci n'existe qu'après l'hydratation : on réessaie jusqu'à ce que le terminal s'ouvre.
+async function openTerminal(page: Page) {
+  await expect(async () => {
+    if (!(await page.locator('#term-input').count())) await page.keyboard.press('Control+k');
+    await expect(page.locator('#term-input')).toBeVisible({ timeout: 500 });
+  }).toPass();
+}
+
+async function run(page: Page, command: string) {
+  await page.locator('#term-input').fill(command);
+  await page.locator('#term-input').press('Enter');
+}
+
+test.describe('terminal et flags', () => {
+  test('Ctrl+K ouvre le terminal, help répond, Échap ferme', async ({ page }) => {
+    await page.goto('/');
+    await openTerminal(page);
+    await expect(page.locator('#term-input')).toBeFocused();
+    await run(page, 'help');
+    await expect(page.locator('.screen')).toContainText('submit');
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#term-input')).toHaveCount(0);
+  });
+
+  test('open navigue vers un projet', async ({ page }) => {
+    await page.goto('/');
+    await page
+      .getByRole('button', { name: /terminal/i })
+      .first()
+      .click();
+    await run(page, 'open infra-davincibot');
+    await expect(page).toHaveURL(/\/projets\/infra-davincibot$/);
+  });
+
+  test('la commande cachée donne un flag que submit valide', async ({ page }) => {
+    await page.goto('/');
+    await openTerminal(page);
+    await run(page, 'ls -a');
+    await expect(page.locator('.screen')).toContainText('.backdoor');
+    await run(page, './.backdoor');
+    const flag = (await page.locator('.screen p.signal').last().textContent())?.trim() ?? '';
+    expect(flag).toMatch(/^aust-1\{.+\}$/);
+    await run(page, `submit ${flag}`);
+    await expect(page.locator('.screen')).toContainText('flag validé ! 1/5');
+    await run(page, 'submit aust-1{faux}');
+    await expect(page.locator('.screen')).toContainText('flag invalide');
+  });
+
+  test('le code Konami révèle un flag', async ({ page }) => {
+    await page.goto('/projets');
+    for (const k of [
+      'ArrowUp',
+      'ArrowUp',
+      'ArrowDown',
+      'ArrowDown',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowLeft',
+      'ArrowRight',
+      'b',
+      'a',
+    ]) {
+      await page.keyboard.press(k);
+    }
+    await expect(page.locator('.reveal .flag')).toHaveText(/^aust-1\{.+\}$/);
+  });
+
+  test('/admin ne fait aucune requête et révèle un flag', async ({ page }) => {
+    await page.goto('/admin');
+    const requests: string[] = [];
+    page.on('request', (r) => requests.push(r.url()));
+    await page.locator('#u').fill('admin');
+    await page.locator('#p').fill('hunter2');
+    await page.getByRole('button', { name: 'Se connecter' }).click();
+    await expect(page.locator('.flag')).toHaveText(/^aust-1\{.+\}$/);
+    await expect(page.locator('#p')).toHaveValue('');
+    expect(requests.filter((u) => !u.includes('analytics'))).toEqual([]);
+  });
+
+  test('tout fonctionne quand localStorage est bloqué', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(window, 'localStorage', {
+        get() {
+          throw new DOMException('bloqué', 'SecurityError');
+        },
+      });
+    });
+    const errors: string[] = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    await page.goto('/parcours');
+    await page.getByRole('button', { name: /thème/ }).click();
+    await page.getByRole('button', { name: 'liste' }).click();
+    await openTerminal(page);
+    await run(page, './.backdoor');
+    const flag = (await page.locator('.screen p.signal').last().textContent())?.trim() ?? '';
+    await run(page, `submit ${flag}`);
+    await expect(page.locator('.screen')).toContainText('flag validé');
+    expect(errors).toEqual([]);
+  });
+});
