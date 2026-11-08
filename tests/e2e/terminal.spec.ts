@@ -35,6 +35,37 @@ test.describe('terminal et flags', () => {
     await expect(page).toHaveURL(/\/projets\/infra-davincibot$/);
   });
 
+  test('le curseur reste dans le terminal quelle que soit la commande', async ({ page }) => {
+    await page.goto('/');
+    await page
+      .getByRole('button', { name: /terminal/i })
+      .first()
+      .click();
+    const field = page.locator('#term-input');
+    await expect(field).toBeFocused();
+    // Uniquement le clavier : fill() et press() sur le champ le refocaliseraient d'eux-mêmes.
+    for (const command of ['help', 'cd projets', 'open infra-davincibot', 'ls', 'clear']) {
+      await page.keyboard.type(command);
+      await page.keyboard.press('Enter');
+      await expect(field).toBeFocused();
+    }
+    await expect(page).toHaveURL(/\/projets\/infra-davincibot$/);
+    await page.locator('.term .screen').click();
+    await expect(field).toBeFocused();
+    await page.keyboard.type('pwd');
+    await page.keyboard.press('Enter');
+    await expect(page.locator('.screen')).toContainText('~');
+  });
+
+  test('un clic hors du terminal lui rend le focus de la page', async ({ page }) => {
+    await page.goto('/');
+    await openTerminal(page);
+    await expect(page.locator('#term-input')).toBeFocused();
+    await page.locator('main h1').first().click();
+    await expect(page.locator('#term-input')).not.toBeFocused();
+    await expect(page.locator('#term-input')).toBeVisible();
+  });
+
   test('la commande cachée donne un flag que submit valide', async ({ page }) => {
     await page.goto('/');
     await openTerminal(page);

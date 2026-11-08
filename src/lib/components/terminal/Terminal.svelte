@@ -19,6 +19,7 @@
   let busy = $state(false);
   let field: HTMLInputElement | undefined = $state();
   let screen: HTMLElement | undefined = $state();
+  let panel: HTMLElement | undefined = $state();
   let opener: Element | null = null;
 
   $effect(() => {
@@ -26,6 +27,19 @@
       opener = document.activeElement;
       tick().then(() => field?.focus());
     }
+  });
+
+  // Le curseur reste dans le champ tant qu'on ne clique pas hors du terminal : un clic dans
+  // l'écran ou sur un lien de sortie le ramène, sauf pendant une sélection de texte.
+  $effect(() => {
+    if (!panel) return;
+    const refocus = (e: MouseEvent) => {
+      if (e.target instanceof Element && e.target.closest('button, input')) return;
+      if (window.getSelection()?.isCollapsed === false) return;
+      field?.focus();
+    };
+    panel.addEventListener('click', refocus);
+    return () => panel?.removeEventListener('click', refocus);
   });
 
   function close() {
@@ -49,9 +63,12 @@
     if (out.cwd) cwd = out.cwd;
     await tick();
     screen?.scrollTo({ top: screen.scrollHeight });
-    if (out.close) close();
+    if (out.close) return close();
     if (out.external) window.open(out.external, '_blank', 'noopener');
     if (out.navigate) await goto(out.navigate);
+    // Après une commande, et même après une navigation (SvelteKit remet alors le focus sur
+    // <body>), le curseur revient dans le champ.
+    if (terminal.open) field?.focus();
   }
 
   function keydown(e: KeyboardEvent) {
@@ -90,7 +107,7 @@
 <svelte:window onkeydown={globalKey} />
 
 {#if terminal.open}
-  <div class="term" role="dialog" aria-modal="false" aria-label="Terminal">
+  <div class="term" role="dialog" aria-modal="false" aria-label="Terminal" bind:this={panel}>
     <div class="bar t-mono">
       <span><span class="u">ER_</span> terminal</span>
       <button type="button" onclick={close} aria-label="Fermer le terminal">fermer · échap</button>
@@ -117,7 +134,8 @@
         autocapitalize="off"
         spellcheck="false"
         maxlength="200"
-        disabled={busy}
+        readonly={busy}
+        aria-busy={busy}
       />
     </form>
   </div>
