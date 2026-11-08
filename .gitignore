@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Documents de travail locaux (non versionnés)
+local/
