@@ -15,7 +15,8 @@ export default defineConfig({
         runes: ({ filename }) =>
           filename.split(/[/\\]/).includes('node_modules') ? undefined : true,
       },
-      adapter: adapter({ fallback: undefined, strict: true }),
+      // 404.html : page servie par Caddy pour toute URL inconnue ; le routeur client y affiche +error.svelte.
+      adapter: adapter({ fallback: '404.html', strict: true }),
       prerender: { handleHttpError: 'fail', handleMissingId: 'fail' },
       // Pages prérendues : SvelteKit pose la CSP en <meta> avec les empreintes de ses scripts.
       // Les directives qu'une balise <meta> ignore (frame-ancestors…) sont posées par Caddy.
