@@ -1,3 +1,5 @@
+// Signale que JS est actif : les animations d'entrée ne masquent rien sans JS.
+document.documentElement.classList.add('js');
 // Applique le thème mémorisé avant le premier rendu, pour éviter un flash clair → sombre.
 // Fichier statique (et non script inline) pour rester compatible avec la CSP par empreintes.
 try {
