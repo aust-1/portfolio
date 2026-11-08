@@ -1,1 +1,7 @@
+# Signalement de vulnérabilités sur eliott-roussille.fr (RFC 9116).
+# Merci de chiffrer les détails sensibles avec la clé ci-dessous.
 Contact: mailto:eliottroussille@gmail.com
+Expires: 2027-11-08T00:00:00.000Z
+Encryption: https://eliott-roussille.fr/pgp.asc
+Preferred-Languages: fr, en
+Canonical: https://eliott-roussille.fr/.well-known/security.txt
