@@ -34,9 +34,14 @@ venir ». Pour les remplacer : déposer l'image dans `static/media/projets/<slug
 
 ## Sécurité
 
-- `static/pgp.asc` : publier la clé publique PGP.
-- `src/lib/site.ts` : `PGP_FINGERPRINT`, empreinte de cette clé (affichée dans le pied de page).
-- `static/.well-known/security.txt` : la date `Expires` est à renouveler chaque année.
+- Clé PGP, pas encore publiée : `security.txt` n'a pas de ligne `Encryption` et le site ne mentionne
+  aucune clé. Pour la publier, en une fois (`src/lib/security-txt.test.ts` vérifie la cohérence) :
+  - `static/pgp.asc` : la clé publique (bloc `-----BEGIN PGP PUBLIC KEY BLOCK-----`) ;
+  - `src/lib/site.ts` : `PGP_FINGERPRINT`, empreinte de cette clé (pied de page, `/ce-site`) ;
+  - `static/.well-known/security.txt` : remettre `Encryption: https://eliott-roussille.fr/pgp.asc`
+    et la phrase sur le chiffrement.
+- `static/.well-known/security.txt` : la date `Expires` est à renouveler chaque année. Les tests
+  échouent à moins de 30 jours de l'échéance (CI de chaque nuit comprise).
 
 ## Flags
 
