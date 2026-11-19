@@ -17,13 +17,17 @@
         <li><a href="/liens">Ressources recommandées</a></li>
         <li><a href="/cv">CV</a></li>
         <li><a href="/.well-known/security.txt" data-sveltekit-reload>security.txt</a></li>
-        <li><a href="/pgp.asc" data-sveltekit-reload>Clé PGP</a></li>
+        {#if PGP_FINGERPRINT}
+          <li><a href="/pgp.asc" data-sveltekit-reload>Clé PGP</a></li>
+        {/if}
       </ul>
     </nav>
 
     <div class="meta">
-      <p class="t-label">Empreinte PGP</p>
-      <p class="fp t-mono">{PGP_FINGERPRINT}</p>
+      {#if PGP_FINGERPRINT}
+        <p class="t-label">Empreinte PGP</p>
+        <p class="fp t-mono">{PGP_FINGERPRINT}</p>
+      {/if}
       <p class="hint t-mono">cinq choses sont cachées ici. <kbd>ls -a</kbd> est un bon début_</p>
     </div>
   </div>

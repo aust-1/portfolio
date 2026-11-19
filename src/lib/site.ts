@@ -11,5 +11,9 @@ export const SITE = {
   subtitle: 'Étudiant ingénieur cyber & manager, ESILV × EMLV',
 } as const;
 
-/** À REMPLACER (docs/a-remplacer.md) : empreinte de la clé publiée sur /pgp.asc. */
-export const PGP_FINGERPRINT = 'à publier';
+/**
+ * À REMPLACER (docs/a-remplacer.md) : empreinte de la clé publiée sur /pgp.asc. Tant qu'elle vaut
+ * null, ni le pied de page ni /ce-site ne mentionnent de clé, et security.txt n'a pas de ligne
+ * Encryption (vérifié par src/lib/security-txt.test.ts).
+ */
+export const PGP_FINGERPRINT: string | null = null;
