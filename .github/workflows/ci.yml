@@ -34,8 +34,9 @@ jobs:
       - run: pnpm check
       - run: pnpm test
       - run: pnpm build
-      - name: Aucun flag lisible dans le JavaScript livré
-        run: '! grep -rE "aust-1\{dev_flag_[0-9]\}" build/_app'
+      # Ce que /ce-site annonce du CTF, vérifié sur le site construit (voir scripts/build-flags.ts).
+      - name: Aucun flag lisible dans le site livré
+        run: node scripts/build-flags.ts
       - name: Installer Chromium
         run: pnpm exec playwright install --with-deps chromium
       - name: Tests de bout en bout

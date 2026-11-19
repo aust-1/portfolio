@@ -120,8 +120,9 @@
         Le site cache cinq flags au format <code>aust-1&#123;...&#125;</code>. Le terminal (<kbd
           >Ctrl</kbd
         >
-        + <kbd>K</kbd>) les valide avec <code>submit</code>. Seules leurs empreintes SHA-256 sont
-        embarquées dans le code : les lire dans le bundle ne suffit pas.
+        + <kbd>K</kbd>) les valide avec <code>submit</code>, en comparant leur empreinte SHA-256. Le
+        JavaScript livré n'en contient aucun en clair ; ceux que le site révèle lui-même y sont
+        toutefois, simplement obfusqués : lire le code est une piste comme une autre.
       </p>
       <p>
         Le code source est public :
