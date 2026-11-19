@@ -3,6 +3,8 @@ title: Hackathons
 summary: Des formats courts où il faut livrer un prototype en équipe avant la fin du chrono.
 tags: [dev, gestion-de-projet]
 featured: false
+# Brouillon tant que les sections ne sont pas écrites (voir docs/a-remplacer.md).
+draft: true
 period: { start: '2026-01' }
 role: Participant, en équipe
 stack: [Prototypage]

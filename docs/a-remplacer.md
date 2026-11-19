@@ -23,10 +23,10 @@ venir ». Pour les remplacer : déposer l'image dans `static/media/projets/<slug
 ## Textes (commentaires `À COMPLÉTER` dans les fichiers)
 
 - `coupe-de-france-de-robotique.md` : une difficulté technique précise et la solution retenue.
-- `dvctf-bug-bounty.md` : volet organisation ; classements CTF ; nombre de défis publiés.
+- `dvctf-bug-bounty.md` : volet organisation (section « Organisation » retirée en attendant) ; classements CTF ; nombre de défis publiés.
 - `ecosysteme-web-davincibot.md` : schéma d'architecture plus détaillé si besoin.
 - `infra-davincibot.md` : un ou deux extraits de code partageables, commentés.
-- `hackathons.md` : **tout** (dates, sujets, équipes, réalisations, résultats d'Adopt AI et European Defense Tech). La date de début du projet (`2026-01`) est provisoire.
+- `hackathons.md` : **tout** (dates, sujets, équipes, réalisations, résultats d'Adopt AI et European Defense Tech). La date de début du projet (`2026-01`) est provisoire. Le projet est en brouillon (`draft: true`) : retirer la ligne une fois les sections écrites.
 - `livinparis.md` : algorithmes de graphes utilisés.
 - `bot-discord.md` : commandes ou modules écrits personnellement.
 - `boggle.md` : taille de l'équipe et part personnelle.
