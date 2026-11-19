@@ -18,7 +18,8 @@
     "test": "vitest run",
     "e2e": "playwright test",
     "prepare": "svelte-kit sync && node scripts/github-stats.ts || echo ''",
-    "stats": "node scripts/github-stats.ts"
+    "stats": "node scripts/github-stats.ts",
+    "flags:check": "node scripts/build-flags.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
