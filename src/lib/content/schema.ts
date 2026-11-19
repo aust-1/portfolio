@@ -74,6 +74,8 @@ export const ProjectSchema = z.object({
   links: z.array(Link).default([]),
   /** Rôles de la timeline liés à ce projet (slugs). */
   roles: z.array(Slug).default([]),
+  /** Brouillon : validé au build mais jamais publié (ni page, ni liste, ni terminal). */
+  draft: z.boolean().default(false),
 });
 export type Project = z.infer<typeof ProjectSchema>;
 

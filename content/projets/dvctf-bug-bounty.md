@@ -35,9 +35,7 @@ Je conçois des défis de rétro-ingénierie et de réseau pour le DVCTF :
 
 Concevoir un défi demande de comprendre une vulnérabilité mieux que pour l'exploiter : elle doit être exploitable par une voie et une seule, et le chemin doit rester trouvable sans être évident.
 
-## Organisation
-
-<!-- À COMPLÉTER : ce que je prends en charge dans l'organisation du DVCTF (infra de la compétition, planning, support le jour J). -->
+<!-- À COMPLÉTER, puis rétablir la section « ## Organisation » : ce que je prends en charge dans l'organisation du DVCTF (infra de la compétition, planning, support le jour J). -->
 
 ## Résultat
 
