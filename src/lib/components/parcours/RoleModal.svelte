@@ -21,7 +21,7 @@
     if (e.target === dialog) onclose();
   }}
 >
-  <div class="inner">
+  <div class="inner own-grain">
     <button class="close t-ui" type="button" onclick={onclose}>fermer <kbd>échap</kbd></button>
     {@render children()}
   </div>
@@ -40,7 +40,9 @@
   dialog::backdrop {
     background: color-mix(in srgb, var(--er-ink) 60%, transparent);
   }
+  /* Le grain porté par le contenu (et non par le <dialog>, qui défile) couvre toute la hauteur. */
   .inner {
+    position: relative;
     padding: clamp(24px, 4vw, 48px);
     border-top: 8px solid var(--er-signal);
   }

@@ -45,7 +45,8 @@ body::after,
   opacity: var(--er-grain-opacity);
   mix-blend-mode: multiply;
 }
-/* Élément empilé au-dessus du grain (barre de navigation collante) : il porte le sien. */
+/* Élément empilé au-dessus du grain (barre de navigation et menu mobile, terminal, modale des
+   rôles, révélation Konami) : il porte le sien, posé sur sa propre boîte. */
 .own-grain::after {
   position: absolute;
   z-index: auto;
