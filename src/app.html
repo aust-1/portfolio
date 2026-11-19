@@ -4,6 +4,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- En premier après charset et viewport : la CSP en <meta> (posée par SvelteKit) ne s'applique
+         qu'à ce qui la suit, donc à tous les scripts de la page. -->
+    %sveltekit.head%
     <meta name="text-scale" content="scale" />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -14,7 +17,6 @@
       src="https://analytics.eliott-roussille.fr/api/script.js?siteId=9508d102f07b"
       defer
     ></script>
-    %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">
     <div style="display: contents">%sveltekit.body%</div>
