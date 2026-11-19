@@ -69,3 +69,29 @@ test.describe('pages', () => {
     expect(res.headers()['content-type']).toContain('pdf');
   });
 });
+
+// Un id en double (par exemple un titre « Contenu » face au <main id="contenu"> du layout) fait
+// pointer les ancres vers le mauvais élément, sans que le prérendu ne le signale.
+test("aucune page n'a d'id en double", async ({ request }) => {
+  const html = async (path: string) => (await (await request.get(path)).text()) as string;
+  const links = (page: string, prefix: string) =>
+    [...page.matchAll(new RegExp(`href="(${prefix}/[a-z0-9-]+)"`, 'g'))].map((m) => m[1]!);
+  const pages = new Set([
+    ...ROUTES,
+    ...links(await html('/projets'), '/projets'),
+    ...links(await html('/parcours'), '/parcours'),
+  ]);
+  expect(pages.size).toBeGreaterThan(ROUTES.length);
+  for (const path of pages) {
+    const ids = [...(await html(path)).matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+    const dup = ids.filter((id, i) => ids.indexOf(id) !== i);
+    expect(dup, `${path} : id en double`).toEqual([]);
+  }
+});
+
+test('le sommaire de /ce-site mène à chaque section', async ({ page }) => {
+  await page.goto('/ce-site');
+  await page.locator('.toc a[href="#contenu-site"]').click();
+  await expect(page).toHaveURL(/#contenu-site$/);
+  await expect(page.getByRole('heading', { name: 'Contenu', level: 2 })).toBeInViewport();
+});
