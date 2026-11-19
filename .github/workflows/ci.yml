@@ -48,3 +48,39 @@ jobs:
           name: playwright-traces
           path: test-results
           retention-days: 7
+
+  # L'image de production (Dockerfile + Caddyfile), testée comme sur le VPS : ce que vite preview
+  # ne voit pas (en-têtes des 404, barre oblique finale, cache, types) est vérifié ici.
+  image:
+    name: Image Docker et Caddy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Valider le Caddyfile
+        run: >-
+          docker run --rm -e X_FLAG=ci -v "$PWD/infra/Caddyfile.site:/etc/caddy/Caddyfile:ro"
+          caddy:2-alpine caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+      # Sans arguments FLAG_*, le build utilise des flags factices : aucun secret en CI.
+      - name: Construire l'image
+        run: docker build -f infra/Dockerfile -t portfolio:ci .
+      - name: Lancer le conteneur (mêmes restrictions que docker-compose.yml)
+        run: >-
+          docker run -d --name portfolio -p 8080:8080 -e 'X_FLAG=aust-1{dev_flag_2}'
+          --read-only --tmpfs /tmp --cap-drop ALL --security-opt no-new-privileges:true
+          portfolio:ci
+      - name: Attendre le healthcheck
+        run: |
+          for _ in $(seq 1 60); do
+            status="$(docker inspect -f '{{.State.Health.Status}}' portfolio)"
+            [ "$status" = healthy ] && exit 0
+            [ "$status" = unhealthy ] && break
+            sleep 2
+          done
+          echo "Conteneur : $status" >&2
+          docker logs portfolio
+          exit 1
+      - name: Vérifier les réponses
+        run: infra/smoke.sh http://localhost:8080
+      - name: Journaux du conteneur
+        if: failure()
+        run: docker logs portfolio
