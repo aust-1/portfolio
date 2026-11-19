@@ -57,10 +57,10 @@
     overflow-wrap: anywhere;
   }
   .prompt {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .err {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .muted {
     color: color-mix(in srgb, var(--er-bg) 65%, var(--er-ink));
@@ -77,7 +77,7 @@
     color: var(--er-bg);
   }
   a:hover {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .cursor {
     animation: blink 1.1s steps(1) infinite;

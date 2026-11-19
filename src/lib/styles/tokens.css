@@ -14,6 +14,12 @@
   /* Texte posé sur les aplats (charte p. 02 : orange → encre, bleu → papier). */
   --er-on-signal: #0b0c0e;
   --er-on-blue: #e7e5df;
+  /* Orange du petit texte posé sur un bloc encre (terminal, 404, hero) : en sombre, le bloc
+     encre devient papier et l'orange vif y tomberait à 2,4:1 (charte p. 09). */
+  --er-on-block-signal: #ff8a57;
+  /* Orange du petit texte posé sur --er-surface : --er-signal-text n'y atteint que 3,9:1 en clair.
+     Mélange calculé dans chaque thème (assombri en clair, éclairci en sombre). */
+  --er-signal-text-surface: color-mix(in srgb, var(--er-signal-text) 85%, var(--er-ink));
 
   --font-display: 'Inter Tight', system-ui, sans-serif;
   --font-text: 'Inter', system-ui, sans-serif;
@@ -41,6 +47,7 @@
     --er-grain-opacity: 0.17;
     --er-on-signal: #0e0f12;
     --er-on-blue: #eeece6;
+    --er-on-block-signal: #b53c0b;
   }
 }
 
@@ -57,4 +64,5 @@
   --er-grain-opacity: 0.17;
   --er-on-signal: #0e0f12;
   --er-on-blue: #eeece6;
+  --er-on-block-signal: #b53c0b;
 }

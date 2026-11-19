@@ -161,7 +161,7 @@
     color: var(--er-bg);
   }
   .gh:hover {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .invite {
     background: none;
@@ -172,11 +172,11 @@
     cursor: pointer;
   }
   .invite:hover {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   kbd {
     font-family: var(--font-mono);
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
 
   .blue {
@@ -204,7 +204,7 @@
     margin: 0;
   }
   dt {
-    color: color-mix(in srgb, var(--er-on-blue) 75%, var(--er-blue));
+    color: var(--er-on-blue);
     margin-bottom: 4px;
   }
   dd {

@@ -164,7 +164,7 @@
     color: color-mix(in srgb, var(--er-bg) 70%, var(--er-ink));
   }
   .u {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
     font-weight: 800;
   }
   .bar button {
@@ -176,7 +176,7 @@
     padding: 6px 0;
   }
   .bar button:hover {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .screen {
     flex: 1;
@@ -196,23 +196,23 @@
     margin: 0;
   }
   .prompt {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .muted {
     color: color-mix(in srgb, var(--er-bg) 60%, var(--er-ink));
   }
   .signal {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .error {
-    color: color-mix(in srgb, var(--er-signal) 75%, var(--er-bg));
+    color: color-mix(in srgb, var(--er-on-block-signal) 75%, var(--er-bg));
   }
   .ok {
     color: var(--er-bg);
     font-weight: 800;
   }
   .screen a {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .input {
     display: flex;
@@ -228,7 +228,7 @@
     border: 0;
     color: var(--er-bg);
     font: inherit;
-    caret-color: var(--er-signal);
+    caret-color: var(--er-on-block-signal);
     outline: none;
   }
 </style>
