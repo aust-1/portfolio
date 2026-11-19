@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { browser } from '$app/env';
   import { page } from '$app/state';
+  import { getContext } from 'svelte';
 
   // 404 qui répond comme un terminal (spec §10). Suggère les vraies pages et glisse l'indice Konami.
   const ROUTES = [
@@ -12,23 +14,31 @@
     '/liens',
     '/ce-site',
   ];
-  const path = $derived(page.url.pathname);
-  const notFound = $derived(page.status === 404);
+  // Aussi rendue par src/routes/404 : la page prérendue build/404.html, servie par Caddy pour
+  // toute URL inconnue et lisible sans JavaScript. Au prérendu, le chemin demandé n'est pas encore
+  // connu : il s'affiche une fois la page hydratée.
+  const prerendered404 = getContext('page-404') === true;
+  const status = $derived(prerendered404 ? 404 : page.status);
+  const path = $derived(prerendered404 && !browser ? '/page-introuvable' : page.url.pathname);
+  const notFound = $derived(status === 404);
 </script>
 
 <svelte:head>
-  <title>{page.status} · Eliott Roussille</title>
+  <title>{status} · Eliott Roussille</title>
   <meta name="robots" content="noindex" />
 </svelte:head>
 
 <div class="container page">
-  <div class="term t-mono" role="region" aria-label="Erreur {page.status}">
+  <h1 class="visually-hidden">
+    {notFound ? 'Page introuvable (erreur 404)' : `Erreur ${status}`}
+  </h1>
+  <div class="term t-mono" role="region" aria-label="Erreur {status}">
     <p><span class="prompt">visiteur@eliott-roussille:~$</span> cd {path}</p>
     {#if notFound}
       <p class="err">bash: cd: {path}: command not found</p>
       <p class="muted">code de sortie 404 : cette page n'existe pas (ou plus).</p>
     {:else}
-      <p class="err">segmentation fault (core dumped) · {page.status}</p>
+      <p class="err">segmentation fault (core dumped) · {status}</p>
       <p class="muted">{page.error?.message ?? 'Erreur inattendue.'}</p>
     {/if}
     <p><span class="prompt">visiteur@eliott-roussille:~$</span> ls /</p>
@@ -38,7 +48,7 @@
     <p class="muted"># astuce : ↑ ↑ ↓ ↓ ← → ← → B A, quelque part sur ce site</p>
     <p><span class="prompt">visiteur@eliott-roussille:~$</span> <span class="cursor">_</span></p>
   </div>
-  <p class="big t-section" aria-hidden="true">{page.status}<span class="u">_</span></p>
+  <p class="big t-section" aria-hidden="true">{status}<span class="u">_</span></p>
 </div>
 
 <style>
