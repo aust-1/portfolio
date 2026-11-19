@@ -62,7 +62,9 @@
 
   <ul class="grid" aria-live="polite">
     {#each visible as project (project.slug)}
-      <li><ProjectCard {project} {today} tone={project.featured ? 'ink' : 'surface'} /></li>
+      <li>
+        <ProjectCard {project} {today} tone={project.featured ? 'ink' : 'surface'} level={2} />
+      </li>
     {:else}
       <li class="empty t-mono">Aucun projet ne porte ces tags. Retirez un filtre.</li>
     {/each}

@@ -16,6 +16,8 @@
     level?: 1 | 2;
   } = $props();
   const today = new Date();
+  // Sous-titres un niveau sous le titre : h2 sur la page d'un rôle, h3 dans la modale de /parcours.
+  const sub = $derived(level === 1 ? 'h2' : 'h3');
 </script>
 
 <div class="role">
@@ -33,7 +35,7 @@
   <div class="cols">
     {#if role.missions.length}
       <section>
-        <h3 class="t-label">missions</h3>
+        <svelte:element this={sub} class="t-label">missions</svelte:element>
         <ul>
           {#each role.missions as m (m)}<li>{m}</li>{/each}
         </ul>
@@ -41,7 +43,7 @@
     {/if}
     {#if role.achievements.length}
       <section>
-        <h3 class="t-label">réalisations</h3>
+        <svelte:element this={sub} class="t-label">réalisations</svelte:element>
         <ul>
           {#each role.achievements as a (a)}<li>{a}</li>{/each}
         </ul>
@@ -53,7 +55,7 @@
 
   {#if role.skills.length}
     <section class="block">
-      <h3 class="t-label">compétences développées</h3>
+      <svelte:element this={sub} class="t-label">compétences développées</svelte:element>
       <ul class="skills t-mono">
         {#each role.skills as s (s)}<li>{s}</li>{/each}
       </ul>
@@ -62,7 +64,7 @@
 
   {#if projects.length}
     <section class="block">
-      <h3 class="t-label">projets liés</h3>
+      <svelte:element this={sub} class="t-label">projets liés</svelte:element>
       <ul class="projects">
         {#each projects as p (p.slug)}
           <li>
