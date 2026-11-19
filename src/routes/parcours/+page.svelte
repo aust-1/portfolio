@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import { page } from '$app/state';
@@ -48,13 +49,10 @@
   const current = $derived(data.roles.find((r) => r.slug === page.state.role));
 </script>
 
-<svelte:head>
-  <title>Parcours · Eliott Roussille</title>
-  <meta
-    name="description"
-    content="Le parcours d'Eliott Roussille : formation, associations, enseignement et stage, rôle par rôle."
-  />
-</svelte:head>
+<Seo
+  title="Parcours · Eliott Roussille"
+  description="Le parcours d'Eliott Roussille : formation, associations, enseignement et stage, rôle par rôle."
+/>
 
 <div class="container page">
   <SectionHead title="Parcours" id="parcours" level={1} meta="{data.roles.length} rôles">

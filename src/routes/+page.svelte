@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import Contact from '#lib/components/home/Contact.svelte';
   import Featured from '#lib/components/home/Featured.svelte';
   import GithubSection from '#lib/components/home/GithubSection.svelte';
@@ -11,13 +12,11 @@
   const today = new Date();
 </script>
 
-<svelte:head>
-  <title>Eliott Roussille, étudiant ingénieur cyber et manager</title>
-  <meta
-    name="description"
-    content="Portfolio d'Eliott Roussille : cybersécurité offensive et défensive, développement full-stack, infrastructure et gestion de projet."
-  />
-</svelte:head>
+<Seo
+  title="Eliott Roussille, étudiant ingénieur cyber et manager"
+  description="Portfolio d'Eliott Roussille : cybersécurité offensive et défensive, développement full-stack, infrastructure et gestion de projet."
+  type="profile"
+/>
 
 <Hero nextStep={data.nextStep} />
 <div class="sections">
