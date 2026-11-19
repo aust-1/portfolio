@@ -90,7 +90,7 @@
     overflow-wrap: anywhere;
   }
   .flag {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
     font-weight: 800;
     margin-top: 10px;
     user-select: all;

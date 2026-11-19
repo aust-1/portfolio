@@ -142,10 +142,14 @@
     background-color: color-mix(in srgb, var(--er-ink) 85%, var(--er-bg));
   }
   .card.signal .media :global(.ph) {
-    background-color: color-mix(in srgb, var(--er-signal) 80%, var(--er-ink));
+    background-color: color-mix(in srgb, var(--er-signal) 90%, var(--er-ink));
   }
+  /* Sur les cartes encre et orange, la légende et « image à venir_ » prennent la couleur du
+     texte de la carte : l'orange texte y descendrait jusqu'à 1,05:1. */
   .card.ink .media :global(figcaption),
-  .card.signal .media :global(figcaption) {
+  .card.signal .media :global(figcaption),
+  .card.ink .media :global(figcaption span),
+  .card.signal .media :global(figcaption span) {
     color: inherit;
   }
 </style>

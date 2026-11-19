@@ -229,6 +229,9 @@
   dd.t-mono {
     font-size: 14px;
   }
+  .facts a {
+    color: var(--er-signal-text-surface);
+  }
   .award {
     font: 700 20px / 1.2 var(--font-display);
   }

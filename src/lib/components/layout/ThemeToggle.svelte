@@ -14,13 +14,9 @@
   }
 </script>
 
-<button
-  class="toggle t-ui"
-  type="button"
-  onclick={cycle}
-  aria-label="Changer de thème (actuel : {LABEL[theme]})"
->
-  thème : {LABEL[theme]}
+<!-- Nom accessible = texte visible + action (WCAG 2.5.3, label dans le nom). -->
+<button class="toggle t-ui" type="button" onclick={cycle}>
+  thème : {LABEL[theme]}<span class="visually-hidden"> (changer de thème)</span>
 </button>
 
 <style>
