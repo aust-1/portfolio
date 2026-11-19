@@ -151,3 +151,25 @@ a:hover {
     scroll-behavior: auto !important;
   }
 }
+
+/* Impression (CV en tête) : seulement le contenu de la page. Navigation, pied de page, terminal,
+   révélation Konami et grain n'ont pas de sens sur papier ; rien ne reste collé en haut. */
+@media print {
+  .skip,
+  header.nav,
+  footer.footer,
+  .term[role='dialog'],
+  .reveal[role='status'] {
+    display: none !important;
+  }
+  body::after,
+  .own-grain::after {
+    display: none;
+  }
+  body {
+    background: none;
+  }
+  .toc {
+    position: static !important;
+  }
+}
