@@ -110,9 +110,20 @@
   <div class="term" role="dialog" aria-modal="false" aria-label="Terminal" bind:this={panel}>
     <div class="bar t-mono">
       <span><span class="u">ER_</span> terminal</span>
-      <button type="button" onclick={close} aria-label="Fermer le terminal">fermer · échap</button>
+      <button type="button" onclick={close}
+        >fermer<span class="visually-hidden"> le terminal</span> · échap</button
+      >
     </div>
-    <div class="screen t-mono" bind:this={screen} aria-live="polite">
+    <!-- Zone défilante : focalisable pour défiler au clavier (WCAG 2.1.1). -->
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+    <div
+      class="screen t-mono"
+      bind:this={screen}
+      role="log"
+      aria-label="Sortie du terminal"
+      aria-live="polite"
+      tabindex="0"
+    >
       {#each entries as entry, i (i)}
         {#if entry.prompt}<p class="prompt">{entry.prompt}</p>{/if}
         {#each entry.lines as line, j (j)}

@@ -18,7 +18,9 @@
 
 <header class="nav own-grain">
   <div class="container bar">
-    <a class="home" href="/" aria-label="Accueil, Eliott Roussille"><Monogram /></a>
+    <a class="home" href="/"
+      ><Monogram /><span class="visually-hidden">Accueil, Eliott Roussille</span></a
+    >
 
     <button
       class="burger t-ui"
