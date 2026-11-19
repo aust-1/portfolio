@@ -58,7 +58,7 @@ describe('normalize', () => {
     expect(s.fetchedAt).toBe(NOW.toISOString());
   });
 
-  it('garde les 6 premiers langages, triés, avec leur part', () => {
+  it('garde les 6 premiers langages, triés', () => {
     const s = normalize(portfolio, repos, NOW);
     expect(s.languages.map((l) => l.name)).toEqual([
       'TypeScript',
@@ -68,8 +68,21 @@ describe('normalize', () => {
       'Kotlin',
       'Shell',
     ]);
-    const total = s.languages.reduce((a, l) => a + l.share, 0);
-    expect(total).toBeCloseTo(1, 5);
+  });
+
+  it('rapporte chaque part au total de tous les langages, pas des six affichés', () => {
+    // 7 langages, 995 octets au total : Zig (5) n'est pas affiché mais compte dans le total.
+    const s = normalize(portfolio, repos, NOW);
+    expect(s.languages[0]?.share).toBeCloseTo(500 / 995, 10);
+    expect(s.languages[1]?.share).toBeCloseTo(300 / 995, 10);
+    const shown = s.languages.reduce((a, l) => a + l.share, 0);
+    expect(shown).toBeCloseTo(990 / 995, 10);
+  });
+
+  it('donne des parts qui somment à 100 % avec six langages ou moins', () => {
+    const few = { ...portfolio, languages: portfolio.languages.slice(0, 3) };
+    const s = normalize(few, repos, NOW);
+    expect(s.languages.reduce((a, l) => a + l.share, 0)).toBeCloseTo(1, 10);
   });
 
   it('exclut les forks des dépôts récents', () => {

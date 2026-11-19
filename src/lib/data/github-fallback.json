@@ -1,90 +1,90 @@
 {
-  "fetchedAt": "2026-11-08T12:00:00.000Z",
+  "fetchedAt": "2026-11-19T04:34:33.078Z",
   "source": "fallback",
   "contributions": {
-    "commits": 2360,
-    "prs": 18,
-    "issues": 54,
+    "commits": 4202,
+    "prs": 131,
+    "issues": 241,
     "reviews": 5,
-    "repos": 11
+    "repos": 27
   },
-  "stars": 23,
-  "linesChanged": 0,
-  "repoCount": 17,
+  "stars": 112,
+  "linesChanged": 5213142,
+  "repoCount": 44,
   "languages": [
-    {
-      "name": "C#",
-      "color": "#7355dd",
-      "share": 0.32684671326908243
-    },
-    {
-      "name": "TypeScript",
-      "color": "#3178c6",
-      "share": 0.2742876823752225
-    },
     {
       "name": "Python",
       "color": "#3572A5",
-      "share": 0.1783277756600925
+      "share": 0.4522058863756973
     },
     {
-      "name": "Kotlin",
-      "color": "#A97BFF",
-      "share": 0.08577150609443142
-    },
-    {
-      "name": "JavaScript",
-      "color": "#f1e05a",
-      "share": 0.07492203750003752
+      "name": "C#",
+      "color": "#7355dd",
+      "share": 0.1554701733014073
     },
     {
       "name": "Svelte",
       "color": "#ff3e00",
-      "share": 0.05984428510113365
+      "share": 0.14634248866145955
+    },
+    {
+      "name": "TypeScript",
+      "color": "#3178c6",
+      "share": 0.11429198633721832
+    },
+    {
+      "name": "JavaScript",
+      "color": "#f1e05a",
+      "share": 0.02936663742748714
+    },
+    {
+      "name": "PLpgSQL",
+      "color": "#336790",
+      "share": 0.02896237993547928
     }
   ],
   "recent": [
     {
-      "name": "vps-strasbourg-opt",
-      "description": "dossier opt de mon vps à strasbourg",
-      "url": "https://github.com/aust-1/vps-strasbourg-opt",
-      "pushedAt": "2026-11-08T16:42:18Z",
-      "language": "Shell"
-    },
-    {
       "name": "portfolio",
       "description": null,
       "url": "https://github.com/aust-1/portfolio",
-      "pushedAt": "2026-11-08T16:42:04Z",
+      "pushedAt": "2026-11-19T04:33:47Z",
       "language": "Svelte"
     },
     {
       "name": "lectures-notes",
       "description": null,
       "url": "https://github.com/aust-1/lectures-notes",
-      "pushedAt": "2026-11-08T14:17:02Z",
+      "pushedAt": "2026-11-19T04:05:24Z",
       "language": "CSS"
-    },
-    {
-      "name": "github-stats",
-      "description": "Repository-hosted github stats",
-      "url": "https://github.com/aust-1/github-stats",
-      "pushedAt": "2026-11-08T11:24:05Z",
-      "language": "Zig"
-    },
-    {
-      "name": "bourse-tracker",
-      "description": "Suivi personnel d'un PEA (actions et ETF européens, en EUR) : journal daté de chaque ordre, valeur du portefeuille en quasi temps réel, alertes par Discord et email.",
-      "url": "https://github.com/aust-1/bourse-tracker",
-      "pushedAt": "2026-11-06T15:26:41Z",
-      "language": "TypeScript"
     },
     {
       "name": "seterra-parisian-metro",
       "description": "A game similar to Seterra that teaches you how to place stations on the Paris Metro",
       "url": "https://github.com/aust-1/seterra-parisian-metro",
-      "pushedAt": "2026-10-01T01:20:35Z",
+      "pushedAt": "2026-11-19T03:10:59Z",
       "language": "Kotlin"
+    },
+    {
+      "name": "deezer-export",
+      "description": "Exporte une playlist Deezer vers un classeur Excel : une feuille détaillée piste par piste, et une feuille de statistiques (indicateurs globaux, classements et graphique des genres).",
+      "url": "https://github.com/aust-1/deezer-export",
+      "pushedAt": "2026-11-19T02:39:27Z",
+      "language": "Python"
+    },
+    {
+      "name": "github-stats",
+      "description": "Repository-hosted github stats",
+      "url": "https://github.com/aust-1/github-stats",
+      "pushedAt": "2026-11-19T02:18:08Z",
+      "language": "Zig"
+    },
+    {
+      "name": ".github",
+      "description": null,
+      "url": "https://github.com/aust-1/.github",
+      "pushedAt": "2026-11-19T02:13:14Z",
+      "language": null
     }
   ]
 }
