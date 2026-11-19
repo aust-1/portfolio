@@ -14,5 +14,5 @@
   <SectionHead title="Compétences" id="competences-apercu" meta="{total} prouvées par les projets">
     <a href="/competences" class="link-mono">Toutes les compétences</a>
   </SectionHead>
-  <SkillField {skills} {titles} compact />
+  <SkillField {skills} {titles} compact headingLevel={3} />
 </section>

@@ -10,7 +10,15 @@
     skills,
     titles,
     compact = false,
-  }: { skills: Skill[]; titles: Record<string, string>; compact?: boolean } = $props();
+    headingLevel,
+  }: {
+    skills: Skill[];
+    titles: Record<string, string>;
+    compact?: boolean;
+    /** Niveau des titres de famille : h3 sous une section de l'accueil, h2 sous le h1 de /competences. */
+    headingLevel?: 2 | 3;
+  } = $props();
+  const familyTag = $derived(`h${headingLevel ?? (compact ? 3 : 2)}`);
 
   const FAMILIES: { id: SkillFamily; label: string }[] = [
     { id: 'domaine', label: 'domaines' },
@@ -90,7 +98,9 @@
     {@const list = skills.filter((s) => s.family === fam.id)}
     {#if list.length}
       <section class="family" aria-label={fam.label}>
-        <h2 class="t-label">{fam.label} <span>{list.length}</span></h2>
+        <svelte:element this={familyTag} class="family t-label"
+          >{fam.label} <span>{list.length}</span></svelte:element
+        >
         <ul>
           {#each list as s, i (s.slug)}
             <li
@@ -166,10 +176,10 @@
   .compact {
     grid-template-columns: 1fr 1fr 2fr;
   }
-  h2 {
+  .family {
     margin-bottom: 16px;
   }
-  h2 span {
+  .family span {
     color: var(--er-signal-text);
   }
   ul {
