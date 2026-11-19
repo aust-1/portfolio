@@ -16,7 +16,7 @@
 <svelte:window onkeydown={key} />
 
 {#if flag}
-  <div class="reveal" role="status">
+  <div class="reveal own-grain" role="status">
     <p class="t-label">↑ ↑ ↓ ↓ ← → ← → B A · code accepté</p>
     <p class="flag t-mono">{flag}</p>
     <div class="actions">

@@ -30,7 +30,12 @@
       {menuOpen ? 'fermer' : 'menu'}
     </button>
 
-    <nav id="nav-links" class="links" class:open={menuOpen} aria-label="Navigation principale">
+    <nav
+      id="nav-links"
+      class="links own-grain"
+      class:open={menuOpen}
+      aria-label="Navigation principale"
+    >
       <ul>
         {#each LINKS as link (link.href)}
           <li>
@@ -89,6 +94,10 @@
     margin: 0;
     padding: 0;
   }
+  /* Sur grand écran, les liens sont dans la barre, qui porte déjà son grain : pas de second. */
+  .links::after {
+    display: none;
+  }
   .links a {
     color: var(--er-ink);
     text-decoration: none;
@@ -131,6 +140,10 @@
       padding: 8px var(--margin) 24px;
     }
     .links.open {
+      display: block;
+    }
+    /* Menu déroulant : il dépasse de la barre, il porte donc son propre grain. */
+    .links::after {
       display: block;
     }
     ul {
