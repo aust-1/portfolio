@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import '#lib/styles/prose.css';
   import Toc from '#lib/components/motifs/Toc.svelte';
   import SectionHead from '#lib/components/SectionHead.svelte';
@@ -14,13 +15,10 @@
   ];
 </script>
 
-<svelte:head>
-  <title>Comment ce site est fait · Eliott Roussille</title>
-  <meta
-    name="description"
-    content="La stack, l'hébergement, la chaîne de déploiement et les en-têtes de sécurité de eliott-roussille.fr."
-  />
-</svelte:head>
+<Seo
+  title="Comment ce site est fait · Eliott Roussille"
+  description="La stack, l'hébergement, la chaîne de déploiement et les en-têtes de sécurité de eliott-roussille.fr."
+/>
 
 <div class="container page">
   <SectionHead title="Ce site" id="titre" level={1} meta="comment il est fait" />

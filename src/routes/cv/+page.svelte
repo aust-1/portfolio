@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import { formatMonth, formatPeriod, formatStatus } from '#lib/format.ts';
   import { SITE } from '#lib/site.ts';
   import type { PageProps } from './$types';
@@ -7,13 +8,10 @@
   const today = new Date();
 </script>
 
-<svelte:head>
-  <title>CV · Eliott Roussille</title>
-  <meta
-    name="description"
-    content="CV d'Eliott Roussille, étudiant ingénieur en cybersécurité, avec les liens vers chaque projet."
-  />
-</svelte:head>
+<Seo
+  title="CV · Eliott Roussille"
+  description="CV d'Eliott Roussille, étudiant ingénieur en cybersécurité, avec les liens vers chaque projet."
+/>
 
 <!-- Même contenu que la timeline, mis en page comme un CV, imprimable. -->
 <article class="container cv">

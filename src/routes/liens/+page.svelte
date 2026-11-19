@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import Toc from '#lib/components/motifs/Toc.svelte';
   import SectionHead from '#lib/components/SectionHead.svelte';
   import { LIENS } from '#lib/content/liens.ts';
@@ -6,13 +7,10 @@
   const toc = LIENS.map((g, i) => ({ id: g.id, label: g.title, n: i + 1 }));
 </script>
 
-<svelte:head>
-  <title>Ressources recommandées · Eliott Roussille</title>
-  <meta
-    name="description"
-    content="Les ressources que je recommande pour apprendre la cybersécurité, les CTF, le développement et l'infrastructure."
-  />
-</svelte:head>
+<Seo
+  title="Ressources recommandées · Eliott Roussille"
+  description="Les ressources que je recommande pour apprendre la cybersécurité, les CTF, le développement et l'infrastructure."
+/>
 
 <div class="container page">
   <SectionHead title="Liens" id="titre" level={1} meta="ressources recommandées" />

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import ProjectCard from '#lib/components/project/ProjectCard.svelte';
@@ -27,13 +28,10 @@
   }
 </script>
 
-<svelte:head>
-  <title>Projets · Eliott Roussille</title>
-  <meta
-    name="description"
-    content="Tous les projets d'Eliott Roussille : cybersécurité, web, infrastructure, robotique et gestion de projet."
-  />
-</svelte:head>
+<Seo
+  title="Projets · Eliott Roussille"
+  description="Tous les projets d'Eliott Roussille : cybersécurité, web, infrastructure, robotique et gestion de projet."
+/>
 
 <div class="container page">
   <SectionHead

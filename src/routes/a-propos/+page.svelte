@@ -1,16 +1,14 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import '#lib/styles/prose.css';
   import SectionHead from '#lib/components/SectionHead.svelte';
   import { SITE } from '#lib/site.ts';
 </script>
 
-<svelte:head>
-  <title>À propos · Eliott Roussille</title>
-  <meta
-    name="description"
-    content="Eliott Roussille, étudiant ingénieur en cybersécurité à l'ESILV en double diplôme avec l'EMLV."
-  />
-</svelte:head>
+<Seo
+  title="À propos · Eliott Roussille"
+  description="Eliott Roussille, étudiant ingénieur en cybersécurité à l'ESILV en double diplôme avec l'EMLV."
+/>
 
 <div class="container page">
   <SectionHead title="À propos" id="titre" level={1} />
