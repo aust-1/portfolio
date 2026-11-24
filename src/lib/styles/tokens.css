@@ -58,3 +58,23 @@
   --er-on-signal: #0e0f12;
   --er-on-blue: #eeece6;
 }
+
+/* Impression : toujours les couleurs du thème clair. Le fond n'est pas imprimé, un texte clair du
+   thème sombre serait presque illisible sur papier blanc. Spécificité ≥ celle des blocs sombres. */
+@media print {
+  :root:not([data-theme='light']),
+  :root[data-theme] {
+    color-scheme: light;
+    --er-bg: #e7e5df;
+    --er-ink: #0b0c0e;
+    --er-text: #2e3138;
+    --er-muted: #4a4d55;
+    --er-surface: #d6d3cb;
+    --er-dot: #c9c5bb;
+    --er-signal: #ff5a1f;
+    --er-signal-text: #b53c0b;
+    --er-blue: #2b3bd6;
+    --er-on-signal: #0b0c0e;
+    --er-on-blue: #e7e5df;
+  }
+}

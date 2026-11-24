@@ -233,5 +233,13 @@
       margin-top: 28px;
       break-inside: avoid-page;
     }
+    /* Sur papier, l'adresse des projets et des rôles reste lisible après leur nom. */
+    .projects a[href^='/']::after,
+    h3 a[href^='/']::after {
+      content: ' (eliott-roussille.fr' attr(href) ')';
+      font: 400 12px / 1.4 var(--font-mono);
+      color: var(--er-muted);
+      overflow-wrap: anywhere;
+    }
   }
 </style>
