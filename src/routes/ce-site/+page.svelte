@@ -6,7 +6,7 @@
 
   const toc = [
     { id: 'stack', label: 'Stack', n: 1 },
-    { id: 'contenu', label: 'Contenu', n: 2 },
+    { id: 'contenu-site', label: 'Contenu', n: 2 },
     { id: 'hebergement', label: 'Hébergement', n: 3 },
     { id: 'livraison', label: 'Livraison', n: 4 },
     { id: 'securite', label: 'Sécurité', n: 5 },
@@ -54,7 +54,7 @@
         </li>
       </ul>
 
-      <h2 id="contenu">Contenu</h2>
+      <h2 id="contenu-site">Contenu</h2>
       <p>
         Chaque projet et chaque rôle est un fichier Markdown dont l'en-tête est validé par
         <code>zod</code> au build. Un lien vers un projet inexistant, une date mal formée ou une apostrophe
