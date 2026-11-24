@@ -8,11 +8,14 @@
     tone = 'surface',
     large = false,
     today,
+    level = 3,
   }: {
     project: Project;
     tone?: 'ink' | 'signal' | 'surface';
     large?: boolean;
     today: Date;
+    /** Niveau du titre : h3 sous une section (accueil), h2 directement sous le h1 (/projets). */
+    level?: 2 | 3;
   } = $props();
 </script>
 
@@ -30,9 +33,9 @@
     <p class="meta t-mono">
       {formatYears(project.period)} · {formatStatus(project.period, today)}
     </p>
-    <h3 class="t-title title">
+    <svelte:element this={`h${level}`} class="t-title title">
       <a href="/projets/{project.slug}">{project.title}</a>
-    </h3>
+    </svelte:element>
     <p class="role t-mono">{project.role}</p>
     <ul class="tags t-mono" aria-label="Domaines">
       {#each project.tags as tag (tag)}<li>{TAG_LABELS[tag]}</li>{/each}
