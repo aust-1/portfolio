@@ -110,9 +110,20 @@
   <div class="term" role="dialog" aria-modal="false" aria-label="Terminal" bind:this={panel}>
     <div class="bar t-mono">
       <span><span class="u">ER_</span> terminal</span>
-      <button type="button" onclick={close} aria-label="Fermer le terminal">fermer · échap</button>
+      <button type="button" onclick={close}
+        >fermer<span class="visually-hidden"> le terminal</span> · échap</button
+      >
     </div>
-    <div class="screen t-mono" bind:this={screen} aria-live="polite">
+    <!-- Zone défilante : focalisable pour défiler au clavier (WCAG 2.1.1). -->
+    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+    <div
+      class="screen t-mono"
+      bind:this={screen}
+      role="log"
+      aria-label="Sortie du terminal"
+      aria-live="polite"
+      tabindex="0"
+    >
       {#each entries as entry, i (i)}
         {#if entry.prompt}<p class="prompt">{entry.prompt}</p>{/if}
         {#each entry.lines as line, j (j)}
@@ -164,7 +175,7 @@
     color: color-mix(in srgb, var(--er-bg) 70%, var(--er-ink));
   }
   .u {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
     font-weight: 800;
   }
   .bar button {
@@ -176,7 +187,7 @@
     padding: 6px 0;
   }
   .bar button:hover {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .screen {
     flex: 1;
@@ -196,23 +207,23 @@
     margin: 0;
   }
   .prompt {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .muted {
     color: color-mix(in srgb, var(--er-bg) 60%, var(--er-ink));
   }
   .signal {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .error {
-    color: color-mix(in srgb, var(--er-signal) 75%, var(--er-bg));
+    color: color-mix(in srgb, var(--er-on-block-signal) 75%, var(--er-bg));
   }
   .ok {
     color: var(--er-bg);
     font-weight: 800;
   }
   .screen a {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .input {
     display: flex;
@@ -228,7 +239,7 @@
     border: 0;
     color: var(--er-bg);
     font: inherit;
-    caret-color: var(--er-signal);
+    caret-color: var(--er-on-block-signal);
     outline: none;
   }
 </style>

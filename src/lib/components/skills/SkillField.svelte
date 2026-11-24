@@ -204,10 +204,10 @@
   }
   sup {
     font-size: 0.6em;
-    color: var(--er-signal-text);
+    color: var(--er-signal-text-surface);
   }
   li:nth-child(3n) sup {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .focusing .pill {
     opacity: 0.4;
@@ -287,7 +287,7 @@
     font: 700 20px / 1.2 var(--font-display);
   }
   .panel a:hover {
-    color: var(--er-signal);
+    color: var(--er-on-block-signal);
   }
   .hint {
     font-size: 13px;

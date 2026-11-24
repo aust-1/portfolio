@@ -26,6 +26,6 @@
     max-width: 32ch;
   }
   span {
-    color: var(--er-signal-text);
+    color: var(--er-signal-text-surface);
   }
 </style>
