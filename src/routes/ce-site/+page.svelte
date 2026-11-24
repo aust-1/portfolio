@@ -3,6 +3,7 @@
   import Toc from '#lib/components/motifs/Toc.svelte';
   import SectionHead from '#lib/components/SectionHead.svelte';
   import { SECURITY_HEADERS } from '#lib/security-headers.ts';
+  import { PGP_FINGERPRINT } from '#lib/site.ts';
 
   const toc = [
     { id: 'stack', label: 'Stack', n: 1 },
@@ -112,7 +113,8 @@
         Pour signaler une vulnérabilité : <a href="/.well-known/security.txt" data-sveltekit-reload
           >security.txt</a
         >
-        (RFC 9116), avec ma <a href="/pgp.asc" data-sveltekit-reload>clé PGP</a>.
+        (RFC 9116){#if PGP_FINGERPRINT}, avec ma <a href="/pgp.asc" data-sveltekit-reload>clé PGP</a
+          >{/if}.
       </p>
 
       <h2 id="curieux">Pour les curieux</h2>
