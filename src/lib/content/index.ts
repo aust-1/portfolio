@@ -34,11 +34,14 @@ function load<T extends { slug: string }>(
 const byStartDesc = (a: { period: { start: string } }, b: { period: { start: string } }) =>
   monthStart(b.period.start).getTime() - monthStart(a.period.start).getTime();
 
+// Les brouillons (`draft: true`) sont validés comme les autres, puis retirés avant publication.
 const projects = load(
   import.meta.glob<MdModule>('/content/projets/*.md', { eager: true }),
   (d) => ProjectSchema.parse(d),
   'projet',
-).sort(byStartDesc);
+)
+  .filter((p) => !p.draft)
+  .sort(byStartDesc);
 
 const roles = load(
   import.meta.glob<MdModule>('/content/parcours/*.md', { eager: true }),

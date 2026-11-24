@@ -4,7 +4,7 @@ import { getFeatured, getProject, getProjects, getRoles } from './index.ts';
 // Charge le vrai contenu de content/ : si un fichier est invalide, l'import lève et ce test échoue.
 describe('contenu réel', () => {
   it('charge les projets et les rôles', () => {
-    expect(getProjects().length).toBeGreaterThanOrEqual(9);
+    expect(getProjects().length).toBeGreaterThanOrEqual(8);
     expect(getRoles().length).toBeGreaterThanOrEqual(15);
   });
 
@@ -15,6 +15,11 @@ describe('contenu réel', () => {
       'ecosysteme-web-davincibot',
       'infra-davincibot',
     ]);
+  });
+
+  it('ne publie pas les brouillons', () => {
+    expect(getProjects().some((p) => p.draft)).toBe(false);
+    expect(getProject('hackathons')).toBeUndefined();
   });
 
   it("n'affiche jamais l'hexapode", () => {
