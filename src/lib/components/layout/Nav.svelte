@@ -12,6 +12,19 @@
   ];
 
   let menuOpen = $state(false);
+  let burger: HTMLButtonElement | undefined = $state();
+
+  // Bouton de divulgation : Échap referme le menu et rend le focus au bouton « menu », un clic
+  // hors de l'en-tête le referme aussi.
+  function closeOnEscape(e: KeyboardEvent) {
+    if (e.key !== 'Escape' || !menuOpen) return;
+    menuOpen = false;
+    burger?.focus();
+  }
+  function closeOnOutsideClick(e: MouseEvent) {
+    if (!menuOpen || !(e.target instanceof Node)) return;
+    if (!burger?.closest('header')?.contains(e.target)) menuOpen = false;
+  }
   const isActive = (href: string) =>
     page.url.pathname === href || page.url.pathname.startsWith(`${href}/`);
 </script>
@@ -22,6 +35,7 @@
 
     <button
       class="burger t-ui"
+      bind:this={burger}
       type="button"
       aria-expanded={menuOpen}
       aria-controls="nav-links"
@@ -59,6 +73,8 @@
     </nav>
   </div>
 </header>
+
+<svelte:window onkeydown={closeOnEscape} onclick={closeOnOutsideClick} />
 
 <style>
   /* Collante, au-dessus des images (.no-grain, z-index 51) qu'elle recouvre au défilement,
