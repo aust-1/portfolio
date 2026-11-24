@@ -107,7 +107,13 @@
 <svelte:window onkeydown={globalKey} />
 
 {#if terminal.open}
-  <div class="term" role="dialog" aria-modal="false" aria-label="Terminal" bind:this={panel}>
+  <div
+    class="term own-grain"
+    role="dialog"
+    aria-modal="false"
+    aria-label="Terminal"
+    bind:this={panel}
+  >
     <div class="bar t-mono">
       <span><span class="u">ER_</span> terminal</span>
       <button type="button" onclick={close} aria-label="Fermer le terminal">fermer · échap</button>
