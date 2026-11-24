@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import SectionHead from '#lib/components/SectionHead.svelte';
   import SkillField from '#lib/components/skills/SkillField.svelte';
   import type { PageProps } from './$types';
@@ -6,13 +7,10 @@
   let { data }: PageProps = $props();
 </script>
 
-<svelte:head>
-  <title>Compétences · Eliott Roussille</title>
-  <meta
-    name="description"
-    content="Les compétences d'Eliott Roussille, chacune reliée aux projets qui la prouvent."
-  />
-</svelte:head>
+<Seo
+  title="Compétences · Eliott Roussille"
+  description="Les compétences d'Eliott Roussille, chacune reliée aux projets qui la prouvent."
+/>
 
 <div class="container page">
   <SectionHead title="Compétences" id="titre" level={1} meta="{data.skills.length} prouvées" />

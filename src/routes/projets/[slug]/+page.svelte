@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import '#lib/styles/prose.css';
   import { onMount } from 'svelte';
   import Placeholder from '#lib/components/Placeholder.svelte';
@@ -31,10 +32,13 @@
   });
 </script>
 
-<svelte:head>
-  <title>{p.title} · Eliott Roussille</title>
-  <meta name="description" content={p.summary} />
-</svelte:head>
+<Seo
+  title="{p.title} · Eliott Roussille"
+  description={p.summary}
+  type="article"
+  image={p.cover && !p.cover.placeholder ? p.cover.src : undefined}
+  imageAlt={p.cover?.alt}
+/>
 
 <article class="container page">
   <nav class="crumbs t-mono" aria-label="Fil d'Ariane">

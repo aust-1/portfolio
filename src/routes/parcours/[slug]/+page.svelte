@@ -1,14 +1,15 @@
 <script lang="ts">
+  import Seo from '#lib/components/seo/Seo.svelte';
   import RoleDetail from '#lib/components/parcours/RoleDetail.svelte';
   import type { PageProps } from './$types';
 
   let { data }: PageProps = $props();
 </script>
 
-<svelte:head>
-  <title>{data.role.title}, {data.role.organization} · Eliott Roussille</title>
-  <meta name="description" content={data.role.summary ?? data.role.title} />
-</svelte:head>
+<Seo
+  title="{data.role.title}, {data.role.organization} · Eliott Roussille"
+  description={data.role.summary ?? data.role.title}
+/>
 
 <!-- Accès direct (lien partagé, rechargement) : la page complète du rôle. -->
 <article class="container page">
