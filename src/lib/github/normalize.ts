@@ -52,8 +52,10 @@ export function normalize(portfolioJson: unknown, repos: unknown, now: Date): Gi
   const p = PortfolioJson.parse(portfolioJson);
   const list = z.array(Repo).parse(repos);
 
+  // Part de chaque langage dans tout le code (« part du code »), pas dans les six affichés : la
+  // troncature n'intervient qu'à l'affichage, les six parts somment donc à 100 % ou moins.
+  const total = p.languages.reduce((a, l) => a + l.size, 0) || 1;
   const top = [...p.languages].sort((a, b) => b.size - a.size).slice(0, 6);
-  const total = top.reduce((a, l) => a + l.size, 0) || 1;
 
   return {
     fetchedAt: now.toISOString(),
