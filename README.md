@@ -31,6 +31,8 @@ serveur : `sudo opt-deploy portfolio`.
   `deploy-install.sh --key portfolio`), `VPS_KNOWN_HOSTS`.
 - L'image finale est un Caddy sans privilèges (`infra/Caddyfile.site`) qui pose les en-têtes de
   sécurité ; le Caddy partagé du VPS route `eliott-roussille.fr` vers `portfolio:8080`.
+- La CI construit cette image, lance le conteneur et vérifie ses réponses avec `infra/smoke.sh`
+  (en-têtes sur les pages et les 404, redirection des URL à barre finale, cache, types).
 - Les stats GitHub viennent de `aust-1/github-stats` (`generated/portfolio.json`) ; en cas d'échec,
   l'instantané `src/lib/data/github-fallback.json` est utilisé.
 

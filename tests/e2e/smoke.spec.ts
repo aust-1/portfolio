@@ -29,6 +29,29 @@ test.describe('pages', () => {
   test('une URL inconnue répond 404 avec la page terminal', async ({ page }) => {
     const res = await page.goto('/nexiste-pas');
     expect(res?.status()).toBe(404);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(/404/);
+    await expect(page.getByText('bash: cd: /nexiste-pas: command not found')).toBeVisible();
+  });
+
+  test.describe('sans JavaScript', () => {
+    test.use({ javaScriptEnabled: false });
+
+    test('la 404 reste lisible, titrée et non indexée', async ({ page }) => {
+      const res = await page.goto('/nexiste-pas');
+      expect(res?.status()).toBe(404);
+      await expect(page).toHaveTitle('404 · Eliott Roussille');
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText(/404/);
+      await expect(page.getByText('command not found')).toBeVisible();
+      await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex');
+    });
+
+    // build/404.html, servi par Caddy pour toute URL inconnue, est une vraie page prérendue.
+    test('la page 404 prérendue contient le terminal', async ({ page }) => {
+      await page.goto('/404');
+      await expect(page).toHaveTitle('404 · Eliott Roussille');
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText(/404/);
+      await expect(page.getByText('command not found')).toBeVisible();
+    });
   });
 
   test("le hero ne montre aucun chiffre-clé et porte l'accroche de la spec", async ({ page }) => {

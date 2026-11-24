@@ -6,10 +6,9 @@
 	persist_config off
 }
 
-:8080 {
-	root * /srv
-	encode zstd gzip
-
+# En-têtes de sécurité, importés par le site ET par les réponses d'erreur : handle_errors repart
+# d'une réponse vierge, sans les en-têtes posés par le bloc du site.
+(securite) {
 	header {
 		# Les pages prérendues portent leur propre CSP en <meta> (scripts autorisés par empreinte).
 		# Ici, les directives qu'une balise <meta> ne peut pas appliquer.
@@ -25,6 +24,12 @@
 		X-Flag "{$X_FLAG}"
 		-Server
 	}
+}
+
+:8080 {
+	root * /srv
+	encode zstd gzip
+	import securite
 
 	# Fichiers versionnés par empreinte : cache d'un an. Le reste : revalidation à chaque visite.
 	@immutable path /_app/immutable/*
@@ -36,11 +41,26 @@
 	@text path /.well-known/security.txt /pgp.asc
 	header @text Content-Type "text/plain; charset=utf-8"
 
+	# Pages prérendues sans barre finale (trailingSlash = 'never') : /projets/ redirige vers
+	# /projets, requête conservée. Segments non vides uniquement, donc jamais vers « //autre-site ».
+	@slash path_regexp slash ^((?:/[^/]+)+)/$
+	redir @slash {re.slash.1}{?query} 308
+
 	try_files {path} {path}.html {path}/index.html
 	file_server
 
+	# 404.html est une vraie page prérendue (src/routes/404), lisible sans JavaScript.
 	handle_errors 404 {
+		encode zstd gzip
+		import securite
+		header Cache-Control "no-cache"
 		rewrite * /404.html
 		file_server
+	}
+
+	# Toute autre erreur : réponse texte courte, avec les mêmes en-têtes.
+	handle_errors {
+		import securite
+		respond "{err.status_code} {err.status_text}"
 	}
 }
